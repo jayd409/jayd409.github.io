@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jay Desai — Business Analyst</title>
+  <meta name="description" content="Jay Desai — Business Analyst. MS Information Systems, Binghamton University. Requirements gathering, stakeholder communication, process improvement, Python, SQL, Power BI, Oracle Cloud." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0a;
+      --bg2:       #111111;
+      --bg3:       #161616;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.12);
+      --text:      #ededed;
+      --text2:     rgba(255,255,255,0.5);
+      --text3:     rgba(255,255,255,0.32);
+      --teal:      #64ffda;
+      --teal-dim:  rgba(100,255,218,0.12);
+      --teal-glow: rgba(100,255,218,0.08);
+      --blue:      #5b8dee;
+      --blue-dim:  rgba(91,141,238,0.15);
+      --r:         12px;
+      --r-sm:      8px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Scroll progress ── */
+    #scroll-bar {
+      position: fixed; top: 0; left: 0; height: 2px; z-index: 9999;
+      background: var(--teal); width: 0%; transition: width .1s linear;
+    }
+
+    /* ─────────────────── NAV ─────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 64px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-size: .9rem; font-weight: 700; color: var(--text);
+      letter-spacing: -0.3px;
+    }
+    .nav-brand span { color: var(--teal); }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      font-size: .8rem; font-weight: 500; color: var(--text2);
+      padding: 6px 14px; border-radius: 6px; transition: all .15s;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); text-decoration: none; }
+    .nav-hire {
+      font-size: .8rem; font-weight: 600; color: var(--teal);
+      border: 1px solid var(--teal); padding: 7px 18px; border-radius: 6px;
+      transition: all .18s; margin-left: 8px;
+    }
+    .nav-hire:hover { background: var(--teal-dim); text-decoration: none; }
+    .nav-burger { display: none; cursor: pointer; background: none; border: none; padding: 4px; color: var(--text2); }
+
+    /* mobile overlay */
+    #nav-overlay {
+      display: none; position: fixed; inset: 0; z-index: 190;
+      background: rgba(10,10,10,0.97); backdrop-filter: blur(20px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    #nav-overlay.show { display: flex; }
+    #nav-overlay a { font-size: 1.2rem; font-weight: 600; color: var(--text); }
+    #nav-overlay a:hover { color: var(--teal); text-decoration: none; }
+    .overlay-close { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text2); }
+
+    /* ─────────────────── HERO ─────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 40px 80px;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .hero-greeting {
+      font-size: .85rem; font-weight: 500; color: var(--teal);
+      letter-spacing: .08em; margin-bottom: 20px;
+      font-family: 'Inter', monospace;
+    }
+    .hero-name {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800; letter-spacing: -3px; line-height: 1.05;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .hero-tagline {
+      font-size: clamp(1.4rem, 3.5vw, 2.6rem);
+      font-weight: 700; letter-spacing: -1.5px; line-height: 1.15;
+      color: var(--text2); margin-bottom: 28px;
+    }
+    .hero-bio {
+      max-width: 520px; color: var(--text2); font-size: .97rem;
+      line-height: 1.85; margin-bottom: 40px;
+    }
+    .hero-bio strong { color: var(--text); font-weight: 600; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(22,163,74,0.07); border: 1px solid rgba(22,163,74,0.22);
+      color: #4ade80; font-size: .75rem; font-weight: 600;
+      padding: 5px 14px; border-radius: 999px; margin-bottom: 28px;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--teal);
+      border: 1px solid var(--teal);
+      padding: 13px 26px; border-radius: 8px;
+      font-size: .88rem; font-weight: 600; cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-primary:hover { background: var(--teal-dim); transform: translateY(-1px); text-decoration: none; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text2);
+      border: 1px solid var(--border2);
+      padding: 13px 24px; border-radius: 8px;
+      font-size: .88rem; font-weight: 500; cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.25); transform: translateY(-1px); text-decoration: none; }
+
+    /* ─────────────────── SHARED SECTION ─────────────────── */
+    .section {
+      padding: 100px 40px;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .s-full {
+      padding: 100px 40px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .s-full-inner { max-width: 1000px; margin: 0 auto; }
+
+    .eyebrow {
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--teal); }
+
+    .sec-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px;
+    }
+    .sec-sub { font-size: .95rem; color: var(--text2); max-width: 500px; line-height: 1.8; }
+
+    /* ─────────────────── ABOUT BENTO ─────────────────── */
+    .bento { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 52px; }
+    .bc {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r); padding: 28px;
+      transition: border-color .25s;
+    }
+    .bc:hover { border-color: var(--border2); }
+    .bc.span2 { grid-column: span 2; }
+    .bc.accent {
+      background: linear-gradient(135deg, rgba(100,255,218,0.06), rgba(91,141,238,0.06));
+      border-color: rgba(100,255,218,0.18);
+    }
+    .bi { font-size: 1.6rem; margin-bottom: 12px; }
+    .bl { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text3); margin-bottom: 5px; }
+    .bv { font-size: .94rem; font-weight: 700; color: var(--text); line-height: 1.4; }
+    .bd { font-size: .84rem; color: var(--text2); line-height: 1.75; margin-top: 6px; }
+    .bt { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .btag {
+      font-size: .72rem; font-weight: 500; padding: 4px 11px;
+      border-radius: 999px; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border2); color: var(--text2);
+    }
+
+    /* ─────────────────── EXPERIENCE TIMELINE ─────────────────── */
+    .timeline { margin-top: 52px; }
+    .tl-row {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 24px; margin-bottom: 36px; position: relative;
+    }
+    .tl-row::after {
+      content: ''; position: absolute;
+      left: 159px; top: 20px; bottom: -36px;
+      width: 1px; background: var(--border);
+    }
+    .tl-row:last-child::after { display: none; }
+    .tl-meta { text-align: right; padding-top: 2px; }
+    .tl-date { font-size: .74rem; font-weight: 600; color: var(--teal); margin-bottom: 3px; font-family: 'Inter', monospace; }
+    .tl-loc  { font-size: .71rem; color: var(--text3); }
+    .tl-body { padding-left: 24px; position: relative; }
+    .tl-dot {
+      position: absolute; left: -7px; top: 13px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--bg2); border: 2px solid var(--teal);
+      z-index: 1;
+    }
+    .tl-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-left: 2px solid var(--teal);
+      border-radius: var(--r-sm); padding: 22px 26px;
+      transition: border-color .25s;
+    }
+    .tl-card:hover { border-color: var(--border2); border-left-color: var(--teal); }
+    .tl-role { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .tl-co   { font-size: .83rem; font-weight: 600; color: var(--teal); margin-bottom: 14px; opacity: .85; }
+    .tl-ul   { list-style: none; }
+    .tl-ul li {
+      font-size: .84rem; color: var(--text2); padding: 5px 0;
+      border-bottom: 1px solid var(--border); line-height: 1.65;
+      display: flex; gap: 10px;
+    }
+    .tl-ul li:last-child { border-bottom: none; }
+    .tl-ul li::before { content: '▸'; color: var(--teal); flex-shrink: 0; margin-top: 1px; font-size: .76rem; }
+    .pill-green {
+      display: inline-flex; align-items: center;
+      background: rgba(74,222,128,0.1); color: #4ade80;
+      font-size: .7rem; font-weight: 700; padding: 1px 7px;
+      border-radius: 999px; margin-left: 4px;
+    }
+
+    /* ─────────────────── EDUCATION ─────────────────── */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 48px; }
+    .edu-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 26px; position: relative;
+      transition: border-color .25s;
+    }
+    .edu-card:hover { border-color: var(--border2); }
+    .edu-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      border-radius: var(--r) 0 0 var(--r);
+    }
+    .edu-card:nth-child(1)::before { background: var(--teal); }
+    .edu-card:nth-child(2)::before { background: var(--blue); }
+    .edu-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .edu-deg  { font-size: .93rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .edu-sch  { font-size: .83rem; font-weight: 600; color: var(--teal); margin-bottom: 4px; opacity: .85; }
+    .edu-dt   { font-size: .76rem; color: var(--text3); }
+
+    /* ─────────────────── CERTIFICATIONS ─────────────────── */
+    .certs { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; margin-top: 48px; }
+    .cert-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r-sm); padding: 16px 18px;
+      display: flex; align-items: center; gap: 14px;
+      transition: border-color .25s;
+    }
+    .cert-card:hover { border-color: var(--border2); }
+    .cert-ic {
+      width: 38px; height: 38px; border-radius: 8px; flex-shrink: 0;
+      background: var(--teal-glow); border: 1px solid rgba(100,255,218,0.15);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .cert-name   { font-size: .83rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .cert-issuer { font-size: .72rem; color: var(--text3); margin-top: 2px; }
+
+    /* ─────────────────── SKILLS ─────────────────── */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 48px; }
+    .sk-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 22px;
+      transition: border-color .25s;
+    }
+    .sk-card:hover { border-color: var(--border2); }
+    .sk-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .sk-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; background: var(--bg3); border: 1px solid var(--border); }
+    .sk-name  { font-size: .9rem; font-weight: 700; color: var(--text); }
+    .sk-level { font-size: .7rem; color: var(--text3); font-weight: 500; margin-top: 1px; }
+    .sk-bar-bg { height: 3px; background: var(--bg3); border-radius: 99px; overflow: hidden; margin-bottom: 12px; }
+    .sk-bar    { height: 100%; border-radius: 99px; background: var(--teal); transition: width 1.5s cubic-bezier(.4,0,.2,1); }
+    .sk-pills  { display: flex; flex-wrap: wrap; gap: 5px; }
+    .sk-pill   { font-size: .68rem; font-weight: 500; padding: 3px 9px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text3); }
+
+    /* ─────────────────── PROJECTS ─────────────────── */
+    .proj-filter {
+      display: flex; gap: 6px; flex-wrap: wrap; margin: 28px 0;
+    }
+    .fp {
+      font-size: .77rem; font-weight: 500; padding: 6px 14px; border-radius: 6px;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--text2); cursor: pointer; transition: all .18s;
+    }
+    .fp:hover { color: var(--text); border-color: var(--border2); }
+    .fp.on { background: var(--teal-dim); border-color: rgba(100,255,218,0.35); color: var(--teal); }
+
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+    .pc {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      display: flex; flex-direction: column;
+      transition: border-color .25s, transform .25s;
+    }
+    .pc:hover { border-color: rgba(100,255,218,0.3); transform: translateY(-2px); }
+    .pc-bd { padding: 22px 22px 16px; flex: 1; }
+    .pc-badge-row { margin-bottom: 12px; }
+    .pc-badge { font-size: .66rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+    .pb-an { background: rgba(91,141,238,0.15);  color: #93b4f7; }
+    .pb-ml { background: rgba(167,139,250,0.15); color: #c4b5fd; }
+    .pb-op { background: rgba(100,255,218,0.10); color: #64ffda; }
+    .pb-fi { background: rgba(251,191,36,0.12);  color: #fbbf24; }
+    .pb-sp { background: rgba(249,115,22,0.12);  color: #fb923c; }
+    .pc-title { font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.35; }
+    .pc-desc  { font-size: .8rem; color: var(--text2); line-height: 1.7; }
+    .pc-ft    { padding: 14px 22px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+    .pc-btn   {
+      flex: 1; font-size: .76rem; font-weight: 500; padding: 8px;
+      border-radius: 6px; border: 1px solid var(--border);
+      background: transparent; color: var(--text2); cursor: pointer;
+      text-align: center; transition: all .18s;
+    }
+    .pc-btn:hover { border-color: var(--border2); color: var(--text); text-decoration: none; }
+    .pc-btn.fill {
+      background: var(--teal-dim); border-color: rgba(100,255,218,0.3);
+      color: var(--teal);
+    }
+    .pc-btn.fill:hover { background: rgba(100,255,218,0.18); text-decoration: none; }
+
+    /* ─────────────────── CONTACT ─────────────────── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 48px; }
+    .cc {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 20px;
+      display: flex; align-items: center; gap: 14px;
+      transition: border-color .25s; color: inherit;
+    }
+    .cc:hover { border-color: rgba(100,255,218,0.25); text-decoration: none; }
+    .cc-ic {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+      background: var(--teal-glow); border: 1px solid rgba(100,255,218,0.15);
+    }
+    .cc-lbl { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text3); margin-bottom: 2px; }
+    .cc-val { font-size: .88rem; font-weight: 600; color: var(--text); }
+    .cc-sub { font-size: .72rem; color: var(--text3); margin-top: 1px; }
+    .cc-arr { margin-left: auto; color: var(--text3); font-size: .85rem; }
+
+    .contact-form {
+      grid-column: span 2; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: var(--r);
+      padding: 32px;
+    }
+    .contact-form h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .contact-form p  { font-size: .87rem; color: var(--text2); margin-bottom: 22px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fg { margin-bottom: 12px; }
+    .fg label { display: block; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text3); margin-bottom: 5px; }
+    .fg input, .fg textarea {
+      width: 100%; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 6px; padding: 10px 12px; color: var(--text);
+      font-size: .88rem; font-family: inherit; outline: none;
+      transition: border .2s;
+    }
+    .fg input:focus, .fg textarea:focus { border-color: rgba(100,255,218,0.4); }
+    .fg textarea { resize: vertical; min-height: 96px; }
+    .form-submit {
+      background: var(--teal-dim); color: var(--teal);
+      border: 1px solid rgba(100,255,218,0.3); border-radius: 6px;
+      padding: 11px 26px; font-size: .86rem; font-weight: 700; cursor: pointer;
+      transition: all .2s;
+    }
+    .form-submit:hover { background: rgba(100,255,218,0.18); }
+
+    /* ─────────────────── FOOTER ─────────────────── */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 40px 40px 32px; text-align: center;
+    }
+    .ft-name { font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .ft-desc { font-size: .8rem; color: var(--text3); margin-bottom: 16px; }
+    .ft-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .ft-links a { font-size: .76rem; color: var(--text3); transition: color .2s; }
+    .ft-links a:hover { color: var(--teal); text-decoration: none; }
+    .ft-copy { font-size: .7rem; color: rgba(255,255,255,0.14); margin-top: 18px; }
+
+    /* ─────────────────── BACK TO TOP ─────────────────── */
+    #back-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 90;
+      width: 38px; height: 38px; border-radius: 8px;
+      background: var(--bg2); color: var(--teal);
+      border: 1px solid rgba(100,255,218,0.25);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; transition: all .2s;
+      opacity: 0; pointer-events: none;
+    }
+    #back-top.show { opacity: 1; pointer-events: auto; }
+    #back-top:hover { background: var(--teal-dim); }
+
+    /* ─────────────────── MODAL ─────────────────── */
+    .modal-bg {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+      z-index: 300; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-bg.open { display: flex; }
+    .modal {
+      background: var(--bg2); border-radius: var(--r);
+      max-width: 560px; width: 100%; max-height: 88vh;
+      overflow-y: auto; border: 1px solid var(--border2);
+    }
+    .modal-top {
+      padding: 22px 22px 16px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; justify-content: space-between;
+      position: sticky; top: 0; background: var(--bg2); z-index: 1;
+      border-radius: var(--r) var(--r) 0 0;
+    }
+    .modal-top h3 { font-size: 1rem; font-weight: 700; color: var(--text); max-width: 440px; line-height: 1.4; }
+    .modal-close {
+      width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--bg3); color: var(--text2); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: .82rem; flex-shrink: 0;
+      transition: all .15s;
+    }
+    .modal-close:hover { border-color: var(--border2); color: var(--text); }
+    .modal-body { padding: 18px 22px 26px; }
+    .modal-section-label { font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text3); margin: 14px 0 7px; }
+    .modal-body p { color: var(--text2); font-size: .85rem; line-height: 1.75; }
+    .modal-list { list-style: none; }
+    .modal-list li {
+      color: var(--text2); font-size: .83rem; padding: 6px 0;
+      border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 9px; line-height: 1.6;
+    }
+    .modal-list li:last-child { border-bottom: none; }
+    .modal-list li::before { content: '→'; color: var(--teal); flex-shrink: 0; font-size: .8rem; }
+    .modal-db-note {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 6px; padding: 12px 14px; margin-top: 8px;
+    }
+    .modal-db-note p { font-size: .81rem; color: var(--text2); }
+    .modal-db-note code { font-family: 'Inter', monospace; font-size: .76rem; background: rgba(100,255,218,0.07); padding: 1px 4px; border-radius: 3px; color: var(--teal); }
+    .modal-acts { display: flex; gap: 8px; margin-top: 18px; }
+
+    /* ─────────────────── INVOLVEMENT ─────────────────── */
+    .inv-list { margin-top: 48px; display: flex; flex-direction: column; gap: 14px; }
+    .inv-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 24px 28px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 4px 20px; align-items: start;
+      transition: border-color .25s;
+    }
+    .inv-card:hover { border-color: var(--border2); }
+    .inv-role { font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .inv-org  { font-size: .82rem; font-weight: 600; color: var(--teal); opacity: .85; margin-bottom: 10px; }
+    .inv-date { font-size: .73rem; font-weight: 600; color: var(--teal); white-space: nowrap; padding-top: 2px; font-family: 'Inter', monospace; }
+    .inv-ul   { list-style: none; grid-column: 1 / -1; }
+    .inv-ul li {
+      font-size: .83rem; color: var(--text2); padding: 4px 0;
+      display: flex; gap: 10px; line-height: 1.65;
+      border-bottom: 1px solid var(--border);
+    }
+    .inv-ul li:last-child { border-bottom: none; }
+    .inv-ul li::before { content: '▸'; color: var(--teal); flex-shrink: 0; font-size: .76rem; margin-top: 2px; }
+
+    /* ─────────────────── ANIMATIONS ─────────────────── */
+    .fade { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+    .fade.in { opacity: 1; transform: none; }
+    .fade-s { opacity: 0; transform: scale(.98); transition: opacity .5s ease, transform .5s ease; }
+    .fade-s.in { opacity: 1; transform: none; }
+
+    /* ─────────────────── RESPONSIVE ─────────────────── */
+    @media (max-width: 860px) {
+      #nav { padding: 0 24px; }
+      .nav-links, .nav-hire { display: none; }
+      .nav-burger { display: block; }
+      .section { padding: 72px 24px; }
+      .s-full { padding: 72px 24px; }
+      #hero { padding: 100px 24px 64px; }
+      .bento, .edu-grid, .contact-grid { grid-template-columns: 1fr; }
+      .inv-card { grid-template-columns: 1fr; }
+      .inv-date { order: -1; }
+      .bc.span2, .contact-form { grid-column: span 1; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .tl-row { grid-template-columns: 1fr; gap: 10px; }
+      .tl-row::after { display: none; }
+      .tl-meta { text-align: left; }
+      .tl-body { padding-left: 0; }
+      .tl-dot { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 22px 18px; }
+      footer { padding: 36px 24px 28px; }
+    }
+    @media (max-width: 520px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-name { letter-spacing: -2px; }
+      .proj-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="nav-brand">Jay<span>.</span>Desai</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#involvement">Involvement</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-hire">Hire Me</a>
+  <button class="nav-burger" onclick="toggleNav()" aria-label="Menu">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 5h14M2 9h14M2 13h14"/></svg>
+  </button>
+</nav>
+
+<div id="nav-overlay">
+  <button class="overlay-close" onclick="toggleNav()">✕</button>
+  <a href="#about"      onclick="toggleNav()">About</a>
+  <a href="#experience" onclick="toggleNav()">Experience</a>
+  <a href="#education"  onclick="toggleNav()">Education</a>
+  <a href="#involvement" onclick="toggleNav()">Involvement</a>
+  <a href="#skills"     onclick="toggleNav()">Skills</a>
+  <a href="#projects"   onclick="toggleNav()">Projects</a>
+  <a href="#contact"    onclick="toggleNav()">Contact</a>
+  <a href="#contact" class="btn-primary" style="margin-top:8px" onclick="toggleNav()">Hire Me</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-badge fade">
+    <span class="badge-dot"></span>
+    Open to Work — Business Analyst Roles
+  </div>
+
+  <p class="hero-greeting fade">Hi, my name is</p>
+
+  <h1 class="hero-name fade">Jay Desai.</h1>
+
+  <h2 class="hero-tagline fade">Business Analyst & Data Analyst.</h2>
+
+  <p class="hero-bio fade">
+    I specialize in <strong>requirements gathering</strong>, <strong>stakeholder communication</strong>,
+    and <strong>data-driven process improvement</strong> — translating complex business needs into
+    clear technical specifications and measurable outcomes. MS Information Systems from
+    <strong>Binghamton University</strong>. Certified in Oracle Cloud and Google Business Intelligence.
+  </p>
+
+  <div class="hero-btns fade">
+    <a href="#projects" class="btn-primary">
+      View My Work
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/jaypankajdesai" target="_blank" class="btn-secondary">
+      LinkedIn
+    </a>
+    <a href="https://github.com/jayd409" target="_blank" class="btn-secondary">
+      GitHub
+    </a>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<div class="s-full" id="about">
+  <div class="s-full-inner">
+    <div class="eyebrow fade">About</div>
+    <h2 class="sec-title fade">Bridging Business<br>and Technology.</h2>
+    <p class="sec-sub fade">I don't just analyze data — I translate it into decisions. Across banking, digital consulting, and research, every role has sharpened my ability to align stakeholders, define requirements, and drive measurable business outcomes.</p>
+    <div class="bento">
+      <div class="bc fade-s">
+        <div class="bi">🎓</div>
+        <div class="bl">Education</div>
+        <div class="bv">MS, Information Systems</div>
+        <div class="bd">Binghamton University (SUNY) · 2023–2025<br>BE, Information Technology · Atharva College of Engineering · 2015–2019</div>
+      </div>
+      <div class="bc accent fade-s">
+        <div class="bi">🔬</div>
+        <div class="bl">Research</div>
+        <div class="bv">AI Citation Bias &amp; Credibility</div>
+        <div class="bd">Analyzed 24,000+ AI conversations and 366,000+ news citations across OpenAI, Perplexity, and Google — studying political bias, source credibility patterns, and citation concentration effects.</div>
+      </div>
+      <div class="bc span2 fade-s">
+        <div class="bl">Core Competencies</div>
+        <div class="bv" style="margin-bottom:10px">What I bring to every Business Analyst role</div>
+        <div class="bt">
+          <span class="btag">Requirements Gathering</span>
+          <span class="btag">Stakeholder Communication</span>
+          <span class="btag">Process Improvement</span>
+          <span class="btag">Data-Driven Decision Making</span>
+          <span class="btag">KPI Design &amp; Tracking</span>
+          <span class="btag">Agile / Scrum</span>
+          <span class="btag">SQL &amp; Python Analytics</span>
+          <span class="btag">Power BI &amp; Tableau</span>
+          <span class="btag">Oracle Cloud (OCI)</span>
+          <span class="btag">AML / KYC Compliance</span>
+          <span class="btag">Jira &amp; Confluence</span>
+          <span class="btag">Business Case Development</span>
+        </div>
+      </div>
+      <div class="bc fade-s">
+        <div class="bi">📍</div>
+        <div class="bl">Location</div>
+        <div class="bv">Binghamton, New York, USA</div>
+        <div class="bd">Open to remote, hybrid, and relocation opportunities.</div>
+      </div>
+      <div class="bc fade-s">
+        <div class="bi">📬</div>
+        <div class="bl">Contact</div>
+        <div class="bv"><a href="mailto:jayd409@gmail.com">jayd409@gmail.com</a></div>
+        <div class="bd"><a href="tel:6072968115">(607) 296-8115</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/jaypankajdesai" target="_blank">LinkedIn</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EXPERIENCE ══ -->
+<section class="section" id="experience">
+  <div class="eyebrow fade">Career</div>
+  <h2 class="sec-title fade">5+ Years Building<br>Data-Driven Solutions.</h2>
+  <p class="sec-sub fade">From Mumbai to Binghamton — across banking, digital consulting, and academic research.</p>
+  <div class="timeline">
+
+    <div class="tl-row fade">
+      <div class="tl-meta">
+        <div class="tl-date">Aug 2025 – Nov 2025</div>
+        <div class="tl-loc">Binghamton, NY</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-role">Research Intern</div>
+          <div class="tl-co">Binghamton University — Watson School of Engineering</div>
+          <ul class="tl-ul">
+            <li>Designed and built a <strong>Python + SQLite data pipeline</strong> processing 24,000+ AI-generated conversations and 366,000+ news citations, enabling automated bias scoring and source credibility analysis at scale.</li>
+            <li>Developed statistical methodology to quantify political lean across 5 major news source categories, reducing manual review time by approximately <span class="pill-green">↓ 60%</span> compared to prior manual workflows.</li>
+            <li>Evaluated citation bias patterns across <strong>OpenAI, Perplexity, and Google</strong> AI platforms — identifying citation concentration effects where &lt;5% of sources accounted for 40%+ of all citations.</li>
+            <li>Produced research findings and structured analytical reports presented to faculty advisors and department stakeholders, translating complex statistical results into clear, actionable insights.</li>
+            <li>Collaborated cross-functionally with research team members to validate data integrity across multiple collection rounds, ensuring accuracy of the 366k+ citation dataset.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-row fade">
+      <div class="tl-meta">
+        <div class="tl-date">Nov 2023 – May 2025</div>
+        <div class="tl-loc">Binghamton, NY</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-role">Student Assistant</div>
+          <div class="tl-co">Binghamton University</div>
+          <ul class="tl-ul">
+            <li>Redesigned ticketing and service workflows using process mapping (as-is / to-be analysis), reducing average wait times by <span class="pill-green">↓ 45%</span> and improving resolution throughput across the department.</li>
+            <li>Gathered operational requirements from 4 internal stakeholder groups to identify bottlenecks, documented process gaps, and proposed system improvements adopted by department leadership.</li>
+            <li>Coordinated end-to-end event logistics and resource allocation for <strong>20+ campus events</strong>, managing schedules, vendor coordination, and post-event performance reporting.</li>
+            <li>Automated parking services data processes using Python scripts, eliminating manual reconciliation errors and improving data accuracy by <span class="pill-green">↓ 20%</span>.</li>
+            <li>Built and maintained operational dashboards used by supervisors to track service KPIs, attendance, and incident resolution metrics on a weekly basis.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-row fade">
+      <div class="tl-meta">
+        <div class="tl-date">Feb 2022 – Jan 2023</div>
+        <div class="tl-loc">India</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-role">Associate Business Analyst</div>
+          <div class="tl-co">TSS Consultancy Pvt Ltd · Bank of Baroda</div>
+          <ul class="tl-ul">
+            <li>Gathered and documented functional requirements from 8+ business stakeholders across finance, compliance, and operations units — translating ambiguous needs into structured BRDs and user stories consumed by development teams.</li>
+            <li>Supported AML/KYC compliance processes by analyzing transaction monitoring data and documenting regulatory workflow requirements, directly contributing to 2 successful audit reviews.</li>
+            <li>Defined, tracked, and reported on 15+ KPIs across project portfolios, enabling executive stakeholders to make data-backed decisions on resource allocation and prioritization.</li>
+            <li>Managed Agile sprint backlogs in Jira, writing acceptance criteria, facilitating grooming sessions, and coordinating UAT feedback cycles that reduced defect escape rates by <span class="pill-green">↓ 30%</span>.</li>
+            <li>Led knowledge-transfer workshops on automation tools for 12+ team members; authored user manuals, process flows, and system documentation adopted as standard references across the project.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-row fade">
+      <div class="tl-meta">
+        <div class="tl-date">Feb 2020 – Dec 2021</div>
+        <div class="tl-loc">Mumbai, India</div>
+      </div>
+      <div class="tl-body">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-role">Business Analyst</div>
+          <div class="tl-co">Secure Brand and Technologies</div>
+          <ul class="tl-ul">
+            <li>Led requirements discovery for 6+ client digital transformation engagements — conducting stakeholder interviews, facilitating workshops, and producing functional specifications that reduced scope creep by maintaining a 92% requirements sign-off rate.</li>
+            <li>Analyzed client business workflows end-to-end and designed CMS-based solutions that streamlined operations, reducing manual processing steps by an average of <span class="pill-green">↓ 35%</span> across client deployments.</li>
+            <li>Integrated CRM, payments, and analytics modules aligned to client KPIs — improving customer data completeness by 28% and enabling marketing teams to act on real-time behavioral insights.</li>
+            <li>Delivered process improvement recommendations backed by data analysis, including a platform performance optimization initiative that reduced page load times by 40% and improved SEO ranking positions for 3 client properties.</li>
+            <li>Managed project lifecycle from initial requirements gathering through production deployment, serving as the primary liaison between business stakeholders and engineering teams across concurrent projects.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ EDUCATION ══ -->
+<div class="s-full" id="education">
+  <div class="s-full-inner">
+    <div class="eyebrow fade">Education</div>
+    <h2 class="sec-title fade">Academic Foundation</h2>
+    <div class="edu-grid">
+      <div class="edu-card fade-s">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-deg">Master of Science — Information Systems</div>
+        <div class="edu-sch">Binghamton University (SUNY)</div>
+        <div class="edu-dt">August 2023 – May 2025 · Binghamton, New York</div>
+      </div>
+      <div class="edu-card fade-s">
+        <div class="edu-icon">🏛️</div>
+        <div class="edu-deg">Bachelor of Engineering — Information Technology</div>
+        <div class="edu-sch">Atharva College of Engineering</div>
+        <div class="edu-dt">August 2015 – May 2019 · Mumbai, India</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INVOLVEMENT ══ -->
+<section class="section" id="involvement">
+  <div class="eyebrow fade">Campus</div>
+  <h2 class="sec-title fade">Leadership &amp; Involvement.</h2>
+  <p class="sec-sub fade">Clubs, competitions, and volunteer roles at Binghamton University.</p>
+  <div class="inv-list">
+
+    <div class="inv-card fade">
+      <div>
+        <div class="inv-role">Vice President — Events &amp; Outreach</div>
+        <div class="inv-org">Binghamton University Data Analytics Club</div>
+      </div>
+      <div class="inv-date">Sep 2023 – May 2025</div>
+      <ul class="inv-ul">
+        <li>Planned and facilitated bi-weekly workshops on Python, SQL, and Tableau for 40+ graduate students, coordinating speakers from industry and scheduling hands-on project sessions.</li>
+        <li>Organized the club's end-of-semester analytics showcase, where 12 student teams presented data projects to faculty and local employers.</li>
+      </ul>
+    </div>
+
+    <div class="inv-card fade">
+      <div>
+        <div class="inv-role">Competitor — Analytics Track</div>
+        <div class="inv-org">Binghamton University Case Competition (Watson School)</div>
+      </div>
+      <div class="inv-date">Mar 2024</div>
+      <ul class="inv-ul">
+        <li>Collaborated with a four-person team to analyze a real supply-chain dataset and deliver a 15-minute stakeholder presentation with data-backed recommendations within a 48-hour window.</li>
+        <li>Responsible for the SQL analysis and visualization components; team advanced to the final round out of 18 competing groups.</li>
+      </ul>
+    </div>
+
+    <div class="inv-card fade">
+      <div>
+        <div class="inv-role">Graduate Mentor</div>
+        <div class="inv-org">Binghamton University Graduate Student Association — Peer Mentorship Program</div>
+      </div>
+      <div class="inv-date">Jan 2024 – May 2025</div>
+      <ul class="inv-ul">
+        <li>Mentored two incoming international graduate students on academic transitions, course selection, and career planning in the US tech industry.</li>
+        <li>Hosted monthly check-ins and referred mentees to campus career services, resulting in both students securing internship interviews before the end of their first semester.</li>
+      </ul>
+    </div>
+
+    <div class="inv-card fade">
+      <div>
+        <div class="inv-role">Volunteer — Technology &amp; Logistics</div>
+        <div class="inv-org">Binghamton University Hackathon (BingHATTon)</div>
+      </div>
+      <div class="inv-date">Oct 2023</div>
+      <ul class="inv-ul">
+        <li>Supported event operations for a 200-person hackathon — managing check-in systems, technical setup, and team registration coordination over a 24-hour event.</li>
+        <li>Assisted judging panels by preparing submission summaries and coordinating project demo schedules across 35 competing teams.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CERTIFICATIONS ══ -->
+<section class="section" id="certifications">
+  <div class="eyebrow fade">Credentials</div>
+  <h2 class="sec-title fade">Certifications</h2>
+  <p class="sec-sub fade">Verified industry credentials across cloud infrastructure, data platforms, and AI.</p>
+  <div class="certs">
+    <div class="cert-card fade"><div class="cert-ic">☁️</div><div><div class="cert-name">Oracle Cloud Infrastructure 2025 Certified Foundations Associate</div><div class="cert-issuer">Oracle · 2025</div></div></div>
+    <div class="cert-card fade"><div class="cert-ic">🗄️</div><div><div class="cert-name">Oracle Data Platform 2025 Certified Foundations Associate</div><div class="cert-issuer">Oracle · 2025</div></div></div>
+    <div class="cert-card fade"><div class="cert-ic">🐍</div><div><div class="cert-name">Databases and SQL for Data Science with Python</div><div class="cert-issuer">IBM / Coursera</div></div></div>
+    <div class="cert-card fade"><div class="cert-ic">📊</div><div><div class="cert-name">Google Business Intelligence Specialization</div><div class="cert-issuer">Google / Coursera</div></div></div>
+    <div class="cert-card fade"><div class="cert-ic">🤖</div><div><div class="cert-name">Generative AI for Project Managers</div><div class="cert-issuer">PMI / Coursera</div></div></div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<div class="s-full" id="skills">
+  <div class="s-full-inner">
+    <div class="eyebrow fade">Technical Stack</div>
+    <h2 class="sec-title fade">Skills &amp; Tools</h2>
+    <p class="sec-sub fade">The tools I use to move from business requirements to real, measurable outcomes.</p>
+    <div class="skills-grid" style="margin-top:40px">
+      <div class="sk-card fade-s">
+        <div class="sk-top"><div class="sk-icon">🐍</div><div><div class="sk-name">Python</div><div class="sk-level">Expert</div></div></div>
+        <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="93%"></div></div>
+        <div class="sk-pills"><span class="sk-pill">pandas</span><span class="sk-pill">numpy</span><span class="sk-pill">matplotlib</span><span class="sk-pill">sqlite3</span><span class="sk-pill">scikit-learn</span></div>
+      </div>
+      <div class="sk-card fade-s">
+        <div class="sk-top"><div class="sk-icon">🗄️</div><div><div class="sk-name">SQL</div><div class="sk-level">Expert</div></div></div>
+        <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="91%"></div></div>
+        <div class="sk-pills"><span class="sk-pill">SQLite</span><span class="sk-pill">Oracle DB</span><span class="sk-pill">PostgreSQL</span><span class="sk-pill">Window Functions</span><span class="sk-pill">CTEs</span></div>
+      </div>
+      <div class="sk-card fade-s">
+        <div class="sk-top"><div class="sk-icon">📊</div><div><div class="sk-name">Power BI</div><div class="sk-level">Advanced</div></div></div>
+        <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="85%"></div></div>
+        <div class="sk-pills"><span class="sk-pill">DAX</span><span class="sk-pill">Power Query</span><span class="sk-pill">Data Modeling</span><span class="sk-pill">KPI Dashboards</span></div>
+      </div>
+      <div class="sk-card fade-s">
+        <div class="sk-top"><div class="sk-icon">📈</div><div><div class="sk-name">Tableau</div><div class="sk-level">Advanced</div></div></div>
+        <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="81%"></div></div>
+        <div class="sk-pills"><span class="sk-pill">Calculated Fields</span><span class="sk-pill">LOD Expressions</span><span class="sk-pill">Dashboards</span></div>
+      </div>
+      <div class="sk-card fade-s">
+        <div class="sk-top"><div class="sk-icon">📋</div><div><div class="sk-name">Excel</div><div class="sk-level">Advanced</div></div></div>
+        <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="88%"></div></div>
+        <div class="sk-pills"><span class="sk-pill">Pivot Tables</span><span class="sk-pill">VLOOKUP</span><span class="sk-pill">Power Query</span><span class="sk-pill">Macros</span></div>
+      </div>
+      <div class="sk-card fade-s">
+        <div class="sk-top"><div class="sk-icon">☁️</div><div><div class="sk-name">Oracle Cloud (OCI)</div><div class="sk-level">Certified</div></div></div>
+        <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="80%"></div></div>
+        <div class="sk-pills"><span class="sk-pill">OCI Certified</span><span class="sk-pill">Data Platform</span><span class="sk-pill">Cloud Analytics</span></div>
+      </div>
+      <div class="sk-card fade-s">
+        <div class="sk-top"><div class="sk-icon">🏃</div><div><div class="sk-name">Agile / Jira</div><div class="sk-level">Expert</div></div></div>
+        <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="90%"></div></div>
+        <div class="sk-pills"><span class="sk-pill">Scrum</span><span class="sk-pill">Jira</span><span class="sk-pill">Sprint Planning</span><span class="sk-pill">Backlog Grooming</span></div>
+      </div>
+      <div class="sk-card fade-s">
+        <div class="sk-top"><div class="sk-icon">📝</div><div><div class="sk-name">Confluence</div><div class="sk-level">Proficient</div></div></div>
+        <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="78%"></div></div>
+        <div class="sk-pills"><span class="sk-pill">BRDs</span><span class="sk-pill">Process Docs</span><span class="sk-pill">User Stories</span><span class="sk-pill">Wiki</span></div>
+      </div>
+      <div class="sk-card fade-s">
+        <div class="sk-top"><div class="sk-icon">📌</div><div><div class="sk-name">Business Analysis</div><div class="sk-level">Expert</div></div></div>
+        <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="94%"></div></div>
+        <div class="sk-pills"><span class="sk-pill">Requirements</span><span class="sk-pill">KPI Design</span><span class="sk-pill">Process Mapping</span><span class="sk-pill">UAT</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROJECTS ══ -->
+<section class="section" id="projects">
+  <div class="eyebrow fade">Work</div>
+  <h2 class="sec-title fade">Projects.</h2>
+  <p class="sec-sub fade">Real-world analytics, operations, and ML projects — each backed by SQLite and realistic datasets.</p>
+  <div class="proj-filter fade">
+    <button class="fp on" onclick="filterP('all',this)">All Projects</button>
+    <button class="fp" onclick="filterP('analytics',this)">Analytics</button>
+    <button class="fp" onclick="filterP('ml',this)">ML &amp; Prediction</button>
+    <button class="fp" onclick="filterP('ops',this)">Operations</button>
+    <button class="fp" onclick="filterP('finance',this)">Finance</button>
+    <button class="fp" onclick="filterP('sports',this)">Sports</button>
+  </div>
+  <div class="proj-grid" id="proj-grid" style="margin-top:4px"></div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<div class="s-full" id="contact">
+  <div class="s-full-inner">
+    <div class="eyebrow fade">Get In Touch</div>
+    <h2 class="sec-title fade">Let's Work Together.</h2>
+    <p class="sec-sub fade">I'm actively seeking Business Analyst and Data Analyst roles. Open to full-time, contract, and remote opportunities.</p>
+    <div class="contact-grid" style="margin-top:48px">
+      <a href="mailto:jayd409@gmail.com" class="cc fade">
+        <div class="cc-ic">📧</div>
+        <div><div class="cc-lbl">Email</div><div class="cc-val">jayd409@gmail.com</div><div class="cc-sub">Fastest response</div></div>
+        <div class="cc-arr">↗</div>
+      </a>
+      <a href="tel:6072968115" class="cc fade">
+        <div class="cc-ic">📞</div>
+        <div><div class="cc-lbl">Phone</div><div class="cc-val">(607) 296-8115</div><div class="cc-sub">Available weekdays</div></div>
+        <div class="cc-arr">↗</div>
+      </a>
+      <a href="https://www.linkedin.com/in/jaypankajdesai" target="_blank" class="cc fade">
+        <div class="cc-ic">💼</div>
+        <div><div class="cc-lbl">LinkedIn</div><div class="cc-val">jaypankajdesai</div><div class="cc-sub">Connect with me</div></div>
+        <div class="cc-arr">↗</div>
+      </a>
+      <a href="https://github.com/jayd409" target="_blank" class="cc fade">
+        <div class="cc-ic">🐙</div>
+        <div><div class="cc-lbl">GitHub</div><div class="cc-val">jayd409</div><div class="cc-sub">All portfolio projects</div></div>
+        <div class="cc-arr">↗</div>
+      </a>
+      <div class="contact-form fade">
+        <h3>Send a Message</h3>
+        <p>Tell me about the role, project, or opportunity you have in mind.</p>
+        <form onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="fg"><label>First Name</label><input type="text" placeholder="Jane" required></div>
+            <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+          </div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="you@company.com" required></div>
+          <div class="fg"><label>Subject</label><input type="text" placeholder="Business Analyst opportunity"></div>
+          <div class="fg"><label>Message</label><textarea placeholder="Tell me about the opportunity or project..." required></textarea></div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="ft-name">Jay Desai</div>
+  <div class="ft-desc">Business Analyst &amp; Data Analyst</div>
+  <div class="ft-links">
+    <a href="mailto:jayd409@gmail.com">Email</a>
+    <a href="tel:6072968115">Phone</a>
+    <a href="https://www.linkedin.com/in/jaypankajdesai" target="_blank">LinkedIn</a>
+    <a href="https://github.com/jayd409" target="_blank">GitHub</a>
+  </div>
+  <div class="ft-copy">© 2026 Jay Desai · Binghamton, New York</div>
+</footer>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ══ MODAL ══ -->
+<div class="modal-bg" id="modal-bg" onclick="closeMBg(event)">
+  <div class="modal" id="modal">
+    <div class="modal-top">
+      <h3 id="modal-title"></h3>
+      <button class="modal-close" onclick="closeM()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const GH = 'https://github.com/jayd409';
+const BC = { analytics:'pb-an', ml:'pb-ml', ops:'pb-op', finance:'pb-fi', sports:'pb-sp' };
+
+const projects = [
+  {
+    id:1, title:'Agile Sprint Tracker', slug:'agile-sprint-tracker',
+    badge:'ops', bl:'Operations', cat:'ops',
+    desc:'WSJF-prioritized sprint planning tool assigning 60 user stories across sprints by MoSCoW and capacity, with SQL analytics on velocity and backlog health.',
+    stack:['Python','SQLite'],
+    feat:['60 user stories with epics, story points and dependencies','WSJF scoring: business value, time criticality, risk reduction','Auto-assigns to sprints by velocity capacity','SQL: sprint velocity, MoSCoW distribution, top WSJF stories','KPI dashboard with sprint health metrics']
+  },
+  {
+    id:2, title:'AI Citation Bias Analyzer', slug:'ai-citation-bias-analyzer',
+    badge:'analytics', bl:'Analytics', cat:'analytics',
+    desc:"Analyzes 5,000 AI-generated citations to detect political lean and bias patterns — tied to Jay's live research analyzing 24k+ real AI conversations.",
+    stack:['Python','SQLite'],
+    feat:['5,000 citations from real news source names (BBC, CNN, Fox, Reuters)','Political lean scoring per citation and platform','SQL: avg bias by platform, top topics, citation trends','Mirrors live research at Binghamton University','Platform comparison with bias distribution analysis']
+  },
+  {
+    id:3, title:'Bank Process Automation Dashboard', slug:'bank-process-automation-dashboard',
+    badge:'finance', bl:'Finance', cat:'finance',
+    desc:'Operational analytics for 8,000 banking tickets — SLA compliance, escalation rates, and resolution time by priority and department, queried via SQL.',
+    stack:['Python','SQLite'],
+    feat:['8,000 tickets: Wire Transfer, AML Alert, KYC, Loan, Card Dispute','SLA by priority (Critical 4h, High 24h, Medium 72h)','SQL: SLA rate by category, escalations by priority, avg resolution','Department performance benchmarking','Executive-ready KPI dashboard']
+  },
+  {
+    id:4, title:'Customer Churn Prediction', slug:'customer-churn-prediction',
+    badge:'ml', bl:'ML / Prediction', cat:'ml',
+    desc:'Logistic regression model on 4,000 telecom customers predicting churn (20% industry rate), with SQL cohort analysis by plan type and tenure band.',
+    stack:['Python','SQLite'],
+    feat:['4,000 customers with real telecom churn benchmarks (~20%)','Month-to-Month contracts: 35% churn vs 2-Year: 3%','SQL: churn rate by plan, churned vs retained, tenure bands','Feature importance for retention strategy','Risk scoring with personalized recommendations']
+  },
+  {
+    id:5, title:'Email Campaign Analytics', slug:'email-campaign-analytics',
+    badge:'analytics', bl:'Analytics', cat:'analytics',
+    desc:'Marketing analytics using Mailchimp 2023 industry benchmarks — Welcome (68.6% open), Abandoned Cart (40.5%), Newsletter (21.3%) — with SQL segmentation.',
+    stack:['Python','SQLite'],
+    feat:['Real Mailchimp 2023 benchmark rates per campaign type','NLP-based subject line keyword analysis','SQL: open/click rates by type, top revenue campaigns','Revenue attribution and campaign ROI','Performance benchmarks by campaign type']
+  },
+  {
+    id:6, title:'Energy Usage Forecaster', slug:'energy-usage-forecaster',
+    badge:'analytics', bl:'Analytics', cat:'analytics',
+    desc:'2-year hourly energy dataset using EIA US residential benchmarks (877 kWh/month avg), with EWMA forecasting and SQL peak/off-peak analysis.',
+    stack:['Python','SQLite'],
+    feat:['EIA benchmark: US avg ~877 kWh/month household','Summer peaks at 1,100 kWh, spring/fall ~750 kWh','SQL: consumption by hour, by month, peak vs off-peak','Weekend usage 8% higher than weekdays','EWMA 168-hour rolling forecast with confidence band']
+  },
+  {
+    id:7, title:'Flight Price Analyzer', slug:'flight-price-analyzer',
+    badge:'analytics', bl:'Analytics', cat:'analytics',
+    desc:'Airfare intelligence tool using real US domestic routes (JFK-LAX, ORD-MIA, SFO-SEA) analyzing price patterns and optimal booking windows.',
+    stack:['Python','SQLite'],
+    feat:['Real US domestic routes: JFK-LAX, ORD-MIA, SFO-SEA, DFW-DEN','Real airlines: Delta, United, American, Southwest, JetBlue','Cheapest booking window: 21-45 days before departure','Summer prices ~20% higher; last-minute 25% premium','SQL: avg price by route, airline, booking window']
+  },
+  {
+    id:8, title:'Fundraising Analytics', slug:'fundraising-analytics',
+    badge:'finance', bl:'Finance', cat:'finance',
+    desc:'Nonprofit donor analytics using AFP Fundraising Effectiveness Report benchmarks — $137 avg donation, 45.5% donor retention — with RFM segmentation.',
+    stack:['Python','SQLite'],
+    feat:['AFP benchmark: $137 avg individual donation','Donor retention ~45.5% year-over-year (AFP 2023)','December gives ~30% of annual donations','RFM segmentation: Champions, Loyal, At-Risk, Lapsed','SQL: donations by year, top donors, cohort retention']
+  },
+  {
+    id:9, title:'Healthcare Readmission Predictor', slug:'healthcare-readmission-predictor',
+    badge:'ml', bl:'ML / Prediction', cat:'ml',
+    desc:'Predictive model using CMS Hospital Readmission Reduction Program benchmarks — Heart Failure 24%, COPD 19%, Pneumonia 17% — with SQL risk stratification.',
+    stack:['Python','SQLite'],
+    feat:['CMS benchmarks: Heart Failure 24%, COPD 19%, Pneumonia 17%','Features: age, diagnosis, length of stay, prior admissions','Discharge disposition (SNF/HHC) as key risk signal','SQL: readmission rate by age group, risk distribution','Feature importance for clinical decision support']
+  },
+  {
+    id:10, title:'Healthcare Triage Prediction', slug:'healthcare-triage-prediction',
+    badge:'ml', bl:'ML / Prediction', cat:'ml',
+    desc:'Multi-class ESI triage classifier using Emergency Severity Index distributions (Level 1: 2%, Level 3: 42%), with SQL analytics on acuity and resource allocation.',
+    stack:['Python','SQLite'],
+    feat:['ESI Level distributions: L1 2%, L2 15%, L3 42%, L4 30%, L5 11%','Custom Decision Tree from scratch','SQL: triage distribution, avg vitals by level, resource utilization','Real chief complaints: Chest Pain, SOB, Fracture, Fever','Per-class F1 score and confusion matrix']
+  },
+  {
+    id:11, title:'Housing Price Estimator', slug:'housing-price-estimator',
+    badge:'ml', bl:'ML / Prediction', cat:'ml',
+    desc:'OLS and Ridge regression on 2,000 US listings across real neighborhoods (Beverly Hills, Austin Heights, Denver Park, Chicago North) with SQL benchmarking.',
+    stack:['Python','SQLite'],
+    feat:['2,000 US listings across real neighborhood names','Price ranges: Luxury $800K-$2M, Mid-Range $300K-$600K, Economy $80K-$200K','OLS and Ridge regression with cross-validation','SQL: avg price by neighborhood, by bedrooms, price buckets','Feature importance: SqFt, neighborhood, age, garage']
+  },
+  {
+    id:12, title:'HR Attrition Dashboard', slug:'hr-attrition-dashboard',
+    badge:'analytics', bl:'Analytics', cat:'analytics',
+    desc:'People analytics using IBM HR Analytics dataset benchmarks on 2,000 employees — Sales 26% attrition, overtime as #1 driver at 53% vs 10%.',
+    stack:['Python','SQLite'],
+    feat:['IBM HR Analytics benchmarks: 22% overall attrition','Sales 26% attrition, R&D 17%, HR 25%','Overtime workers: 53% attrition vs 10% without overtime','SQL: attrition rate by dept, level, salary vs attrition','Retention risk scoring']
+  },
+  {
+    id:13, title:'Insurance Fraud Detector', slug:'insurance-fraud-detector',
+    badge:'ml', bl:'ML / Prediction', cat:'ml',
+    desc:'Fraud risk scoring on 8,000 claims using industry fraud benchmarks (10-15% rate) — attorney involvement and delayed reporting as top signals.',
+    stack:['Python','SQLite'],
+    feat:['Industry-benchmark 12% fraud rate across 8,000 claims','Attorney involvement: 65% fraudulent vs 15% honest','Days to report: fraudulent avg 8.7 vs honest 1.2 days','SQL: fraud rate by policy, avg claim by status, risk tiers','Tier classification: Low / Medium / High / Critical']
+  },
+  {
+    id:14, title:'Inventory Demand Forecaster', slug:'inventory-demand-forecaster',
+    badge:'ops', bl:'Operations', cat:'ops',
+    desc:'SKU-level inventory analytics for real product categories — Electronics peak Nov-Dec, Clothing peaks Apr/Sep — with SQL reorder calculations.',
+    stack:['Python','SQLite'],
+    feat:['Real categories: Electronics, Clothing, Food, Health, Home','Electronics 2x demand in Nov-Dec; Clothing peak Apr & Sep','SQL: stock vs demand, SKUs needing reorder, revenue by category','Safety stock = 1.5x lead time demand','Forecast vs actual with stockout risk scoring']
+  },
+  {
+    id:15, title:'NLP Document Pipeline', slug:'nlp-document-pipeline',
+    badge:'analytics', bl:'Analytics', cat:'analytics',
+    desc:'End-to-end NLP pipeline on 10 documents about Climate Change, AI in Healthcare, EV Market, Fed Policy, and Cybersecurity with SQL metrics.',
+    stack:['Python','SQLite'],
+    feat:['10 documents on real current topics','TF-IDF term extraction and document similarity matrix','SQL: compression ratios, topic distribution, summary metrics','Pipeline benchmarking across document types','Topics: Climate, ML in Healthcare, EV Market, Fed Policy']
+  },
+  {
+    id:16, title:'Operations Analytics Dashboard', slug:'operations-analytics-dashboard',
+    badge:'ops', bl:'Operations', cat:'ops',
+    desc:'University service desk analytics for 7,000 tickets — IT (35%), Facilities (25%), HR (20%) — with SLA compliance and satisfaction scoring via SQL.',
+    stack:['Python','SQLite'],
+    feat:['7,000 tickets: IT (35%), Facilities (25%), HR (20%), Finance (15%)','Issue types: VPN Issues, HVAC, Password Reset, Payroll Inquiries','SLA targets: Critical 4h, High 8h, Medium 24h, Low 72h','~75.6% SLA compliance; satisfaction mean 3.84/5','SQL: SLA rate by dept, avg wait by category, satisfaction trend']
+  },
+  {
+    id:17, title:'Personal Budget Tracker', slug:'personal-budget-tracker',
+    badge:'finance', bl:'Finance', cat:'finance',
+    desc:'18-month tracker using BLS Consumer Expenditure Survey 2022-2023 averages — Housing $1,885/mo, Food $779/mo — with EWMA forecasting and z-score anomalies.',
+    stack:['Python','SQLite'],
+    feat:['BLS survey data: Housing $1,885/mo, Food $779/mo, Transport $914/mo','Income: $6,000-$7,500/mo (Binghamton NY adjusted)','EWMA-based 3-month budget forecast','Seasonal patterns: winter heating, December holiday spending spike','SQL: monthly income vs expenses, savings rate, category drill-down']
+  },
+  {
+    id:18, title:'Restaurant Profitability Analyzer', slug:'restaurant-profitability-analyzer',
+    badge:'finance', bl:'Finance', cat:'finance',
+    desc:'2-year casual dining analysis with 28 real menu items, industry food cost margins (Steak 35-40%, Pasta 22-28%), and Fri-Sat 40% cover premium.',
+    stack:['Python','SQLite'],
+    feat:['28 real menu items: burgers $13-19, steaks $35-46, pasta $15-22','Industry food cost margins: steak 35-40%, pasta 22-28%','Fri-Sat covers 40% higher than weekdays (industry norm)','SQL: revenue by day, top 10 items, margin by category','4-week demand forecast for top items']
+  },
+  {
+    id:19, title:'Social Sentiment Analyzer', slug:'social-sentiment-analyzer',
+    badge:'analytics', bl:'Analytics', cat:'analytics',
+    desc:'3,000 social posts across Twitter, LinkedIn, Instagram, Reddit on real topics (AI Tech, EVs, NBA, Remote Work) with NLP sentiment and SQL engagement analysis.',
+    stack:['Python','SQLite'],
+    feat:['Real topics: AI Technology, EVs, Remote Work, Stock Market, NBA','Platform distribution: Twitter 40%, LinkedIn 25%, Instagram 20%, Reddit 15%','SQL: sentiment by platform, engagement by sentiment, trending topics','Sentiment: 42% positive, 35% neutral, 23% negative','Realistic engagement benchmarks by platform']
+  },
+  {
+    id:20, title:'Student Performance Predictor', slug:'student-performance-predictor',
+    badge:'ml', bl:'ML / Prediction', cat:'ml',
+    desc:'Dual-model system using UCI Student Performance Dataset characteristics predicting GPA and pass/fail, with SQL cohort analysis by study habits.',
+    stack:['Python','SQLite'],
+    feat:['UCI Student Performance Dataset structure','15+ hours study + 90% attendance → GPA 3.5-4.0 correlation','<5 hours study + <60% attendance → GPA 1.5-2.2','SQL: pass rate by study hours, grade by attendance band','Early warning system for at-risk students']
+  },
+  {
+    id:21, title:'Supplier Risk Scorecard', slug:'supplier-risk-scorecard',
+    badge:'ops', bl:'Operations', cat:'ops',
+    desc:'Composite risk scoring for 150 global suppliers across 12 countries — Japan 95% on-time, China 82-90% — with realistic country-based performance benchmarks.',
+    stack:['Python','SQLite'],
+    feat:['150 suppliers across 12 real countries','Japan/Germany 95% on-time; India/Vietnam 80-85% on-time','Electronics in Taiwan/China; Textiles in Vietnam; Automotive in Germany','SQL: risk tier distribution, spend by category, top 10 riskiest','Country risk heatmap and delivery vs defect scatter']
+  },
+  {
+    id:22, title:'Manchester United Performance Analytics', slug:'manchester-united-analytics',
+    badge:'sports', bl:'Sports Analytics', cat:'analytics',
+    desc:'Premier League match analytics for Manchester United covering 4 seasons (2020-2024) — win rates, goal trends, home/away splits, top scorers, and opponent analysis.',
+    stack:['Python','SQLite'],
+    feat:['152 matches across 4 Premier League seasons (2020-21 to 2023-24)','Win/draw/loss rates and points totals by season','Goals scored vs conceded with season-by-season goal difference','Home vs away performance — win rate, avg goals, points split','Top scorers: aggregated goals, assists, and appearances per season','SQL: opponent win rate, seasonal trends, venue performance splits']
+  },
+  {
+    id:23, title:'Formula 1 Race Strategy Analyzer', slug:'f1-race-strategy-analyzer',
+    badge:'sports', bl:'Sports Analytics', cat:'analytics',
+    desc:'F1 analytics covering lap times, pit stop strategies, constructor standings, and driver championship points across the 2021-2023 seasons.',
+    stack:['Python','SQLite'],
+    feat:['~5,000 lap time records across 10 circuits per season','Pit stop strategy distribution: 1-Stop, 2-Stop, Undercut, Overcut','Driver championship standings — top 5 per season (2021-2023)','Constructor points progression across three seasons','Average lap time by constructor and circuit','SQL: fastest constructor per circuit, strategy efficiency analysis']
+  },
+  {
+    id:24, title:'Music Streaming Trends Analyzer', slug:'music-streaming-trends-analyzer',
+    badge:'analytics', bl:'Analytics', cat:'analytics',
+    desc:'Streaming analytics across 10 global regions — top genres by market, artist popularity trends, playlist engagement metrics, and audio feature correlations.',
+    stack:['Python','SQLite'],
+    feat:['1,200 genre-region-month stream records (10 genres × 10 regions × 12 months)','Dominant genre per region: Latin leads Brazil/Mexico, K-Pop leads South Korea','Top artist popularity scores with monthly stream estimates','Curated vs mood playlist performance — followers, skip rate, daily streams','Audio feature analysis: high-energy + high-danceability track filtering','SQL: genre totals, regional breakdowns, artist trends, playlist comparisons']
+  }
+];
+
+function renderP(filter) {
+  const g = document.getElementById('proj-grid');
+  g.innerHTML = '';
+  const list = filter === 'all' ? projects : projects.filter(p => {
+    if (filter === 'ml')        return p.badge === 'ml';
+    if (filter === 'analytics') return p.cat === 'analytics' && p.badge !== 'sports';
+    if (filter === 'ops')       return p.cat === 'ops';
+    if (filter === 'finance')   return p.cat === 'finance';
+    if (filter === 'sports')    return p.badge === 'sports';
+    return true;
+  });
+  list.forEach(p => {
+    const d = document.createElement('div');
+    d.className = 'pc fade';
+    d.innerHTML = `
+      <div class="pc-bd">
+        <div class="pc-badge-row"><span class="pc-badge ${BC[p.badge]||'pb-an'}">${p.bl}</span></div>
+        <div class="pc-title">${p.title}</div>
+        <div class="pc-desc">${p.desc}</div>
+      </div>
+      <div class="pc-ft">
+        <button class="pc-btn" onclick="openM(${p.id})">Details</button>
+        <a class="pc-btn fill" href="${GH}/${p.slug}" target="_blank">View on GitHub →</a>
+      </div>`;
+    g.appendChild(d);
+  });
+  setTimeout(() => g.querySelectorAll('.pc.fade').forEach(el => observer.observe(el)), 40);
+}
+
+function filterP(cat, btn) {
+  document.querySelectorAll('.fp').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderP(cat);
+}
+
+function openM(id) {
+  const p = projects.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-body').innerHTML = `
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+      <span class="pc-badge ${BC[p.badge]}" style="font-size:.72rem;padding:4px 10px">${p.bl}</span>
+    </div>
+    <p>${p.desc}</p>
+    <div class="modal-section-label">Tech Stack</div>
+    <div style="display:flex;flex-wrap:wrap;gap:5px">${p.stack.map(s=>`<span class="sk-pill">${s}</span>`).join('')}</div>
+    <div class="modal-section-label">Key Features</div>
+    <ul class="modal-list">${p.feat.map(f=>`<li>${f}</li>`).join('')}</ul>
+    <div class="modal-section-label">Database</div>
+    <div class="modal-db-note"><p>Data is stored in a <strong>SQLite database</strong> (<code>outputs/data.db</code>) and queried with SQL as the primary analytics engine — demonstrating real Python + SQL workflows on realistic datasets.</p></div>
+    <div class="modal-acts">
+      <a class="btn-primary" href="${GH}/${p.slug}" target="_blank" style="font-size:.81rem;padding:9px 18px">View on GitHub →</a>
+      <button onclick="closeM()" style="padding:9px 18px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--text2);cursor:pointer;font-size:.81rem">Close</button>
+    </div>`;
+  document.getElementById('modal-bg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMBg(e) { if (e.target === document.getElementById('modal-bg')) closeM(); }
+function closeM() { document.getElementById('modal-bg').classList.remove('open'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeM(); });
+
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sent ✓'; btn.style.background = 'rgba(74,222,128,0.12)'; btn.style.color = '#4ade80';
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.style.color = ''; e.target.reset(); }, 3500);
+}
+
+function toggleNav() { document.getElementById('nav-overlay').classList.toggle('show'); }
+
+/* Intersection observer for fade animations */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      const bar = e.target.querySelector('.sk-bar[data-w]');
+      if (bar) setTimeout(() => bar.style.width = bar.dataset.w, 120);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.fade, .fade-s').forEach(el => observer.observe(el));
+
+/* Scroll progress + back to top */
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('scroll-bar').style.width = pct + '%';
+  document.getElementById('back-top').classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+renderP('all');
+</script>
+</body>
+</html>
