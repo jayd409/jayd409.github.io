@@ -61,7 +61,7 @@
       font-size: .9rem; font-weight: 700; color: var(--text);
       letter-spacing: -0.3px;
     }
-    .nav-brand span { color: var(--teal); }
+    .nav-brand span { color: var(--text2); }
     .nav-links { display: flex; align-items: center; gap: 4px; }
     .nav-links a {
       font-size: .8rem; font-weight: 500; color: var(--text2);
@@ -208,9 +208,9 @@
       align-items: flex-start; margin-bottom: 14px; gap: 16px;
     }
     .tl-role { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
-    .tl-co   { font-size: .83rem; font-weight: 600; color: var(--teal); opacity: .85; }
+    .tl-co   { font-size: .83rem; font-weight: 600; color: var(--teal); }
     .tl-meta { text-align: right; flex-shrink: 0; }
-    .tl-date { font-size: .74rem; font-weight: 600; color: var(--teal); margin-bottom: 2px; }
+    .tl-date { font-size: .74rem; font-weight: 600; color: var(--text3); margin-bottom: 2px; }
     .tl-loc  { font-size: .71rem; color: var(--text3); }
     .tl-ul   { list-style: none; }
     .tl-ul li {
@@ -228,23 +228,23 @@
     }
 
     /* ─────────────────── EDUCATION ─────────────────── */
-    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 48px; }
+    .edu-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 48px; }
     .edu-card {
       background: var(--bg2); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 26px; position: relative;
+      border-left: 3px solid var(--teal);
+      border-radius: var(--r-sm); padding: 24px 28px;
       transition: border-color .25s;
     }
+    .edu-card:nth-child(2) { border-left-color: var(--blue); }
     .edu-card:hover { border-color: var(--border2); }
-    .edu-card::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
-      border-radius: var(--r) 0 0 var(--r);
-    }
-    .edu-card:nth-child(1)::before { background: var(--teal); }
-    .edu-card:nth-child(2)::before { background: var(--blue); }
-    .edu-icon { font-size: 1.8rem; margin-bottom: 12px; }
-    .edu-deg  { font-size: .93rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
-    .edu-sch  { font-size: .83rem; font-weight: 600; color: var(--teal); margin-bottom: 4px; opacity: .85; }
-    .edu-dt   { font-size: .76rem; color: var(--text3); }
+    .edu-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+    .edu-meta   { text-align: right; flex-shrink: 0; }
+    .edu-deg  { font-size: .93rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .edu-sch  { font-size: .82rem; font-weight: 600; color: var(--teal); opacity: .9; }
+    .edu-card:nth-child(2) .edu-sch { color: var(--blue); }
+    .edu-dt   { font-size: .76rem; color: var(--text3); line-height: 1.6; }
+    .edu-body { font-size: .78rem; color: var(--text2); line-height: 1.8; border-top: 1px solid var(--border); padding-top: 12px; }
+    .edu-label { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text3); margin-bottom: 5px; }
 
     /* ─────────────────── CERTIFICATIONS ─────────────────── */
     .certs { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; margin-top: 48px; }
@@ -455,7 +455,7 @@
       .section { padding: 72px 24px; }
       .s-full { padding: 72px 24px; }
       #hero { padding: 100px 24px 64px; }
-      .bento, .edu-grid, .contact-grid { grid-template-columns: 1fr; }
+      .bento, .contact-grid { grid-template-columns: 1fr; }
       .bc.span2, .contact-form { grid-column: span 1; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .tl-header { flex-direction: column; gap: 4px; }
@@ -477,7 +477,7 @@
 
 <!-- ══ NAV ══ -->
 <nav id="nav">
-  <div class="nav-brand">Jay<span>.</span>Desai</div>
+  <div class="nav-brand">Jay Desai</div>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
@@ -486,7 +486,7 @@
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
-  <a href="#contact" class="nav-hire">Hire Me</a>
+  <a href="#contact" class="nav-hire">Contact Me</a>
   <button class="nav-burger" onclick="toggleNav()" aria-label="Menu">
     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 5h14M2 9h14M2 13h14"/></svg>
   </button>
@@ -500,7 +500,7 @@
   <a href="#skills"     onclick="toggleNav()">Skills</a>
   <a href="#projects"   onclick="toggleNav()">Projects</a>
   <a href="#contact"    onclick="toggleNav()">Contact</a>
-  <a href="#contact" class="btn-primary" style="margin-top:8px" onclick="toggleNav()">Hire Me</a>
+  <a href="#contact" class="btn-primary" style="margin-top:8px" onclick="toggleNav()">Contact Me</a>
 </div>
 
 <!-- ══ HERO ══ -->
@@ -512,10 +512,9 @@
   <h2 class="hero-tagline fade">Business Analyst & Data Analyst.</h2>
 
   <p class="hero-bio fade">
-    I work at the intersection of business and technology — turning messy data into clear decisions
-    and complex requirements into shipped products. MS Information Systems from
-    <strong>Binghamton University</strong>, with experience across banking, digital consulting,
-    and academic research.
+    From Mumbai to New York — I've spent five years helping teams cut through complexity: defining
+    what needs to be built, finding what the data actually says, and bridging the gap between
+    business stakeholders and engineers. MS in Information Systems from Binghamton University.
   </p>
 
   <div class="hero-btns fade">
@@ -539,12 +538,6 @@
     <h2 class="sec-title fade">Bridging Business<br>and Technology.</h2>
     <p class="sec-sub fade">I don't just analyze data — I translate it into decisions. Across banking, digital consulting, and research, every role has sharpened my ability to align stakeholders, define requirements, and drive measurable business outcomes.</p>
     <div class="bento">
-      <div class="bc fade-s">
-        <div class="bi">🎓</div>
-        <div class="bl">Education</div>
-        <div class="bv">MS, Information Systems</div>
-        <div class="bd">Binghamton University (SUNY) · 2023–2025<br>BE, Information Technology · Atharva College of Engineering · 2015–2019</div>
-      </div>
       <div class="bc span2 fade-s">
         <div class="bl">Core Competencies</div>
         <div class="bv" style="margin-bottom:10px">What I bring to every Business Analyst role</div>
@@ -598,9 +591,9 @@
         </div>
       </div>
       <ul class="tl-ul">
-        <li>Designed and built a <strong>Python + SQLite data pipeline</strong> processing 24,000+ AI-generated conversations and 366,000+ news citations, enabling automated bias scoring and source credibility analysis at scale.</li>
-        <li>Developed statistical methodology to quantify political lean across 5 major news source categories, reducing manual review time by approximately <span class="pill-green">↓ 60%</span> compared to prior manual workflows.</li>
-        <li>Evaluated citation bias patterns across <strong>OpenAI, Perplexity, and Google</strong> AI platforms — identifying citation concentration effects where &lt;5% of sources accounted for 40%+ of all citations.</li>
+        <li>Designed and built a Python + SQLite data pipeline processing 24,000+ AI-generated conversations and 366,000+ news citations, enabling automated bias scoring and source credibility analysis at scale.</li>
+        <li>Developed statistical methodology to quantify political lean across 5 major news source categories, reducing manual review time by approximately 60% compared to prior manual workflows.</li>
+        <li>Evaluated citation bias patterns across OpenAI, Perplexity, and Google AI platforms — identifying citation concentration effects where less than 5% of sources accounted for 40%+ of all citations.</li>
         <li>Produced research findings and structured analytical reports presented to faculty advisors and department stakeholders, translating complex statistical results into clear, actionable insights.</li>
         <li>Collaborated cross-functionally with research team members to validate data integrity across multiple collection rounds, ensuring accuracy of the 366k+ citation dataset.</li>
       </ul>
@@ -618,10 +611,10 @@
         </div>
       </div>
       <ul class="tl-ul">
-        <li>Redesigned ticketing and service workflows using process mapping (as-is / to-be analysis), reducing average wait times by <span class="pill-green">↓ 45%</span> and improving resolution throughput across the department.</li>
+        <li>Redesigned ticketing and service workflows using process mapping (as-is / to-be analysis), reducing average wait times by 45% and improving resolution throughput across the department.</li>
         <li>Gathered operational requirements from 4 internal stakeholder groups to identify bottlenecks, documented process gaps, and proposed system improvements adopted by department leadership.</li>
-        <li>Coordinated end-to-end event logistics and resource allocation for <strong>20+ campus events</strong>, managing schedules, vendor coordination, and post-event performance reporting.</li>
-        <li>Automated parking services data processes using Python scripts, eliminating manual reconciliation errors and improving data accuracy by <span class="pill-green">↓ 20%</span>.</li>
+        <li>Coordinated end-to-end event logistics and resource allocation for 20+ campus events, managing schedules, vendor coordination, and post-event performance reporting.</li>
+        <li>Automated parking services data processes using Python scripts, eliminating manual reconciliation errors and improving data accuracy by 20%.</li>
         <li>Built and maintained operational dashboards used by supervisors to track service KPIs, attendance, and incident resolution metrics on a weekly basis.</li>
       </ul>
     </div>
@@ -641,7 +634,7 @@
         <li>Gathered and documented functional requirements from 8+ business stakeholders across finance, compliance, and operations units — translating ambiguous needs into structured BRDs and user stories consumed by development teams.</li>
         <li>Supported AML/KYC compliance processes by analyzing transaction monitoring data and documenting regulatory workflow requirements, directly contributing to 2 successful audit reviews.</li>
         <li>Defined, tracked, and reported on 15+ KPIs across project portfolios, enabling executive stakeholders to make data-backed decisions on resource allocation and prioritization.</li>
-        <li>Managed Agile sprint backlogs in Jira, writing acceptance criteria, facilitating grooming sessions, and coordinating UAT feedback cycles that reduced defect escape rates by <span class="pill-green">↓ 30%</span>.</li>
+        <li>Managed Agile sprint backlogs in Jira, writing acceptance criteria, facilitating grooming sessions, and coordinating UAT feedback cycles that reduced defect escape rates by 30%.</li>
         <li>Led knowledge-transfer workshops on automation tools for 12+ team members; authored user manuals, process flows, and system documentation adopted as standard references across the project.</li>
       </ul>
     </div>
@@ -659,7 +652,7 @@
       </div>
       <ul class="tl-ul">
         <li>Led requirements discovery for 6+ client digital transformation engagements — conducting stakeholder interviews, facilitating workshops, and producing functional specifications that reduced scope creep by maintaining a 92% requirements sign-off rate.</li>
-        <li>Analyzed client business workflows end-to-end and designed CMS-based solutions that streamlined operations, reducing manual processing steps by an average of <span class="pill-green">↓ 35%</span> across client deployments.</li>
+        <li>Analyzed client business workflows end-to-end and designed CMS-based solutions that streamlined operations, reducing manual processing steps by an average of 35% across client deployments.</li>
         <li>Integrated CRM, payments, and analytics modules aligned to client KPIs — improving customer data completeness by 28% and enabling marketing teams to act on real-time behavioral insights.</li>
         <li>Delivered process improvement recommendations backed by data analysis, including a platform performance optimization initiative that reduced page load times by 40% and improved SEO ranking positions for 3 client properties.</li>
         <li>Managed project lifecycle from initial requirements gathering through production deployment, serving as the primary liaison between business stakeholders and engineering teams across concurrent projects.</li>
@@ -676,22 +669,34 @@
     <h2 class="sec-title fade">Academic Foundation</h2>
     <div class="edu-grid">
       <div class="edu-card fade-s">
-        <div class="edu-icon">🎓</div>
-        <div class="edu-deg">Master of Science — Information Systems</div>
-        <div class="edu-sch">Binghamton University (SUNY)</div>
-        <div class="edu-dt">August 2023 – May 2025 · Binghamton, New York</div>
-        <div class="edu-dt" style="margin-top:10px;line-height:1.7;color:var(--text2);font-size:.8rem;">
-          <strong style="color:var(--text3);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;">Relevant Coursework</strong><br>
+        <div class="edu-header">
+          <div>
+            <div class="edu-deg">Master of Science — Information Systems</div>
+            <div class="edu-sch">Binghamton University (SUNY)</div>
+          </div>
+          <div class="edu-meta">
+            <div class="edu-dt">Aug 2023 – May 2025</div>
+            <div class="edu-dt">Binghamton, New York</div>
+          </div>
+        </div>
+        <div class="edu-body">
+          <div class="edu-label">Relevant Coursework</div>
           Data Mining · Applied Machine Learning · System &amp; Web Security · Agile Methodologies · Database Management · Data Analytics · PostgreSQL
         </div>
       </div>
       <div class="edu-card fade-s">
-        <div class="edu-icon">🏛️</div>
-        <div class="edu-deg">Bachelor of Engineering — Information Technology</div>
-        <div class="edu-sch">Atharva College of Engineering</div>
-        <div class="edu-dt">August 2015 – May 2019 · Mumbai, India</div>
-        <div class="edu-dt" style="margin-top:10px;line-height:1.7;color:var(--text2);font-size:.8rem;">
-          <strong style="color:var(--text3);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;">Activities</strong><br>
+        <div class="edu-header">
+          <div>
+            <div class="edu-deg">Bachelor of Engineering — Information Technology</div>
+            <div class="edu-sch">Atharva College of Engineering</div>
+          </div>
+          <div class="edu-meta">
+            <div class="edu-dt">Aug 2015 – May 2019</div>
+            <div class="edu-dt">Mumbai, India</div>
+          </div>
+        </div>
+        <div class="edu-body">
+          <div class="edu-label">Activities</div>
           Cultural Secretary — organized college-wide cultural events, led cross-team coordination and student engagement initiatives.<br>
           Vice Captain, Football Team — led team strategy and represented the college in intercollegiate competitions.
         </div>
