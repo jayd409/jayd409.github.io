@@ -202,7 +202,7 @@
     }
     .tl-row::after {
       content: ''; position: absolute;
-      left: 159px; top: 20px; bottom: -36px;
+      left: 183px; top: 20px; bottom: -36px;
       width: 1px; background: var(--border);
     }
     .tl-row:last-child::after { display: none; }
@@ -454,28 +454,6 @@
     .modal-db-note code { font-family: 'Inter', monospace; font-size: .76rem; background: rgba(100,255,218,0.07); padding: 1px 4px; border-radius: 3px; color: var(--teal); }
     .modal-acts { display: flex; gap: 8px; margin-top: 18px; }
 
-    /* ─────────────────── INVOLVEMENT ─────────────────── */
-    .inv-list { margin-top: 48px; display: flex; flex-direction: column; gap: 14px; }
-    .inv-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 24px 28px;
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 4px 20px; align-items: start;
-      transition: border-color .25s;
-    }
-    .inv-card:hover { border-color: var(--border2); }
-    .inv-role { font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
-    .inv-org  { font-size: .82rem; font-weight: 600; color: var(--teal); opacity: .85; margin-bottom: 10px; }
-    .inv-date { font-size: .73rem; font-weight: 600; color: var(--teal); white-space: nowrap; padding-top: 2px; font-family: 'Inter', monospace; }
-    .inv-ul   { list-style: none; grid-column: 1 / -1; }
-    .inv-ul li {
-      font-size: .83rem; color: var(--text2); padding: 4px 0;
-      display: flex; gap: 10px; line-height: 1.65;
-      border-bottom: 1px solid var(--border);
-    }
-    .inv-ul li:last-child { border-bottom: none; }
-    .inv-ul li::before { content: '▸'; color: var(--teal); flex-shrink: 0; font-size: .76rem; margin-top: 2px; }
-
     /* ─────────────────── ANIMATIONS ─────────────────── */
     .fade { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
     .fade.in { opacity: 1; transform: none; }
@@ -491,8 +469,6 @@
       .s-full { padding: 72px 24px; }
       #hero { padding: 100px 24px 64px; }
       .bento, .edu-grid, .contact-grid { grid-template-columns: 1fr; }
-      .inv-card { grid-template-columns: 1fr; }
-      .inv-date { order: -1; }
       .bc.span2, .contact-form { grid-column: span 1; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .tl-row { grid-template-columns: 1fr; gap: 10px; }
@@ -522,7 +498,6 @@
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#education">Education</a>
-    <a href="#involvement">Involvement</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
@@ -538,7 +513,6 @@
   <a href="#about"      onclick="toggleNav()">About</a>
   <a href="#experience" onclick="toggleNav()">Experience</a>
   <a href="#education"  onclick="toggleNav()">Education</a>
-  <a href="#involvement" onclick="toggleNav()">Involvement</a>
   <a href="#skills"     onclick="toggleNav()">Skills</a>
   <a href="#projects"   onclick="toggleNav()">Projects</a>
   <a href="#contact"    onclick="toggleNav()">Contact</a>
@@ -748,64 +722,6 @@
   </div>
 </div>
 
-<!-- ══ INVOLVEMENT ══ -->
-<section class="section" id="involvement">
-  <div class="eyebrow fade">Campus</div>
-  <h2 class="sec-title fade">Leadership &amp; Involvement.</h2>
-  <p class="sec-sub fade">Clubs, competitions, and volunteer roles at Binghamton University.</p>
-  <div class="inv-list">
-
-    <div class="inv-card fade">
-      <div>
-        <div class="inv-role">Vice President — Events &amp; Outreach</div>
-        <div class="inv-org">Binghamton University Data Analytics Club</div>
-      </div>
-      <div class="inv-date">Sep 2023 – May 2025</div>
-      <ul class="inv-ul">
-        <li>Planned and facilitated bi-weekly workshops on Python, SQL, and Tableau for 40+ graduate students, coordinating speakers from industry and scheduling hands-on project sessions.</li>
-        <li>Organized the club's end-of-semester analytics showcase, where 12 student teams presented data projects to faculty and local employers.</li>
-      </ul>
-    </div>
-
-    <div class="inv-card fade">
-      <div>
-        <div class="inv-role">Competitor — Analytics Track</div>
-        <div class="inv-org">Binghamton University Case Competition (Watson School)</div>
-      </div>
-      <div class="inv-date">Mar 2024</div>
-      <ul class="inv-ul">
-        <li>Collaborated with a four-person team to analyze a real supply-chain dataset and deliver a 15-minute stakeholder presentation with data-backed recommendations within a 48-hour window.</li>
-        <li>Responsible for the SQL analysis and visualization components; team advanced to the final round out of 18 competing groups.</li>
-      </ul>
-    </div>
-
-    <div class="inv-card fade">
-      <div>
-        <div class="inv-role">Graduate Mentor</div>
-        <div class="inv-org">Binghamton University Graduate Student Association — Peer Mentorship Program</div>
-      </div>
-      <div class="inv-date">Jan 2024 – May 2025</div>
-      <ul class="inv-ul">
-        <li>Mentored two incoming international graduate students on academic transitions, course selection, and career planning in the US tech industry.</li>
-        <li>Hosted monthly check-ins and referred mentees to campus career services, resulting in both students securing internship interviews before the end of their first semester.</li>
-      </ul>
-    </div>
-
-    <div class="inv-card fade">
-      <div>
-        <div class="inv-role">Volunteer — Technology &amp; Logistics</div>
-        <div class="inv-org">Binghamton University Hackathon (BingHATTon)</div>
-      </div>
-      <div class="inv-date">Oct 2023</div>
-      <ul class="inv-ul">
-        <li>Supported event operations for a 200-person hackathon — managing check-in systems, technical setup, and team registration coordination over a 24-hour event.</li>
-        <li>Assisted judging panels by preparing submission summaries and coordinating project demo schedules across 35 competing teams.</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
 <!-- ══ CERTIFICATIONS ══ -->
 <section class="section" id="certifications">
   <div class="eyebrow fade">Credentials</div>
@@ -976,7 +892,7 @@ const projects = [
     feat:['60 user stories with epics, story points and dependencies','WSJF scoring: business value, time criticality, risk reduction','Auto-assigns to sprints by velocity capacity','SQL: sprint velocity, MoSCoW distribution, top WSJF stories','KPI dashboard with sprint health metrics']
   },
   {
-    id:2, title:'AI Citation Bias Analyzer', slug:'ai-citation-bias-analyzer',
+    id:2, title:'AI Citation Bias Analyzer', slug:'serp-collection-pipeline',
     badge:'analytics', bl:'Analytics', cat:'analytics',
     desc:"Analyzes 5,000 AI-generated citations to detect political lean and bias patterns — tied to Jay's live research analyzing 24k+ real AI conversations.",
     stack:['Python','SQLite'],
