@@ -195,36 +195,23 @@
     }
 
     /* ─────────────────── EXPERIENCE TIMELINE ─────────────────── */
-    .timeline { margin-top: 52px; }
-    .tl-row {
-      display: grid; grid-template-columns: 160px 1fr;
-      gap: 24px; margin-bottom: 36px; position: relative;
-    }
-    .tl-row::after {
-      content: ''; position: absolute;
-      left: 183px; top: 20px; bottom: -36px;
-      width: 1px; background: var(--border);
-    }
-    .tl-row:last-child::after { display: none; }
-    .tl-meta { text-align: right; padding-top: 2px; }
-    .tl-date { font-size: .74rem; font-weight: 600; color: var(--teal); margin-bottom: 3px; font-family: 'Inter', monospace; }
-    .tl-loc  { font-size: .71rem; color: var(--text3); }
-    .tl-body { padding-left: 24px; position: relative; }
-    .tl-dot {
-      position: absolute; left: -7px; top: 13px;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--bg2); border: 2px solid var(--teal);
-      z-index: 1;
-    }
-    .tl-card {
+    .timeline { margin-top: 52px; display: flex; flex-direction: column; gap: 12px; }
+    .tl-entry {
       background: var(--bg2); border: 1px solid var(--border);
-      border-left: 2px solid var(--teal);
+      border-left: 3px solid var(--teal);
       border-radius: var(--r-sm); padding: 22px 26px;
       transition: border-color .25s;
     }
-    .tl-card:hover { border-color: var(--border2); border-left-color: var(--teal); }
-    .tl-role { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
-    .tl-co   { font-size: .83rem; font-weight: 600; color: var(--teal); margin-bottom: 14px; opacity: .85; }
+    .tl-entry:hover { border-color: var(--border2); border-left-color: var(--teal); }
+    .tl-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 14px; gap: 16px;
+    }
+    .tl-role { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .tl-co   { font-size: .83rem; font-weight: 600; color: var(--teal); opacity: .85; }
+    .tl-meta { text-align: right; flex-shrink: 0; }
+    .tl-date { font-size: .74rem; font-weight: 600; color: var(--teal); margin-bottom: 2px; }
+    .tl-loc  { font-size: .71rem; color: var(--text3); }
     .tl-ul   { list-style: none; }
     .tl-ul li {
       font-size: .84rem; color: var(--text2); padding: 5px 0;
@@ -471,11 +458,8 @@
       .bento, .edu-grid, .contact-grid { grid-template-columns: 1fr; }
       .bc.span2, .contact-form { grid-column: span 1; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
-      .tl-row { grid-template-columns: 1fr; gap: 10px; }
-      .tl-row::after { display: none; }
+      .tl-header { flex-direction: column; gap: 4px; }
       .tl-meta { text-align: left; }
-      .tl-body { padding-left: 0; }
-      .tl-dot { display: none; }
       .form-row { grid-template-columns: 1fr; }
       .contact-form { padding: 22px 18px; }
       footer { padding: 36px 24px 28px; }
@@ -521,11 +505,6 @@
 
 <!-- ══ HERO ══ -->
 <section id="hero">
-  <div class="hero-badge fade">
-    <span class="badge-dot"></span>
-    Open to Work — Business Analyst Roles
-  </div>
-
   <p class="hero-greeting fade">Hi, my name is</p>
 
   <h1 class="hero-name fade">Jay Desai.</h1>
@@ -533,10 +512,10 @@
   <h2 class="hero-tagline fade">Business Analyst & Data Analyst.</h2>
 
   <p class="hero-bio fade">
-    I specialize in <strong>requirements gathering</strong>, <strong>stakeholder communication</strong>,
-    and <strong>data-driven process improvement</strong> — translating complex business needs into
-    clear technical specifications and measurable outcomes. MS Information Systems from
-    <strong>Binghamton University</strong>. Certified in Oracle Cloud and Google Business Intelligence.
+    I work at the intersection of business and technology — turning messy data into clear decisions
+    and complex requirements into shipped products. MS Information Systems from
+    <strong>Binghamton University</strong>, with experience across banking, digital consulting,
+    and academic research.
   </p>
 
   <div class="hero-btns fade">
@@ -566,12 +545,6 @@
         <div class="bv">MS, Information Systems</div>
         <div class="bd">Binghamton University (SUNY) · 2023–2025<br>BE, Information Technology · Atharva College of Engineering · 2015–2019</div>
       </div>
-      <div class="bc accent fade-s">
-        <div class="bi">🔬</div>
-        <div class="bl">Research</div>
-        <div class="bv">AI Citation Bias &amp; Credibility</div>
-        <div class="bd">Analyzed 24,000+ AI conversations and 366,000+ news citations across OpenAI, Perplexity, and Google — studying political bias, source credibility patterns, and citation concentration effects.</div>
-      </div>
       <div class="bc span2 fade-s">
         <div class="bl">Core Competencies</div>
         <div class="bv" style="margin-bottom:10px">What I bring to every Business Analyst role</div>
@@ -594,7 +567,7 @@
         <div class="bi">📍</div>
         <div class="bl">Location</div>
         <div class="bv">Binghamton, New York, USA</div>
-        <div class="bd">Open to remote, hybrid, and relocation opportunities.</div>
+        <div class="bd">Originally from Mumbai, India.</div>
       </div>
       <div class="bc fade-s">
         <div class="bi">📬</div>
@@ -613,88 +586,84 @@
   <p class="sec-sub fade">From Mumbai to Binghamton — across banking, digital consulting, and academic research.</p>
   <div class="timeline">
 
-    <div class="tl-row fade">
-      <div class="tl-meta">
-        <div class="tl-date">Aug 2025 – Nov 2025</div>
-        <div class="tl-loc">Binghamton, NY</div>
-      </div>
-      <div class="tl-body">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
+    <div class="tl-entry fade">
+      <div class="tl-header">
+        <div>
           <div class="tl-role">Research Intern</div>
           <div class="tl-co">Binghamton University — Watson School of Engineering</div>
-          <ul class="tl-ul">
-            <li>Designed and built a <strong>Python + SQLite data pipeline</strong> processing 24,000+ AI-generated conversations and 366,000+ news citations, enabling automated bias scoring and source credibility analysis at scale.</li>
-            <li>Developed statistical methodology to quantify political lean across 5 major news source categories, reducing manual review time by approximately <span class="pill-green">↓ 60%</span> compared to prior manual workflows.</li>
-            <li>Evaluated citation bias patterns across <strong>OpenAI, Perplexity, and Google</strong> AI platforms — identifying citation concentration effects where &lt;5% of sources accounted for 40%+ of all citations.</li>
-            <li>Produced research findings and structured analytical reports presented to faculty advisors and department stakeholders, translating complex statistical results into clear, actionable insights.</li>
-            <li>Collaborated cross-functionally with research team members to validate data integrity across multiple collection rounds, ensuring accuracy of the 366k+ citation dataset.</li>
-          </ul>
+        </div>
+        <div class="tl-meta">
+          <div class="tl-date">Aug 2025 – Nov 2025</div>
+          <div class="tl-loc">Binghamton, NY</div>
         </div>
       </div>
+      <ul class="tl-ul">
+        <li>Designed and built a <strong>Python + SQLite data pipeline</strong> processing 24,000+ AI-generated conversations and 366,000+ news citations, enabling automated bias scoring and source credibility analysis at scale.</li>
+        <li>Developed statistical methodology to quantify political lean across 5 major news source categories, reducing manual review time by approximately <span class="pill-green">↓ 60%</span> compared to prior manual workflows.</li>
+        <li>Evaluated citation bias patterns across <strong>OpenAI, Perplexity, and Google</strong> AI platforms — identifying citation concentration effects where &lt;5% of sources accounted for 40%+ of all citations.</li>
+        <li>Produced research findings and structured analytical reports presented to faculty advisors and department stakeholders, translating complex statistical results into clear, actionable insights.</li>
+        <li>Collaborated cross-functionally with research team members to validate data integrity across multiple collection rounds, ensuring accuracy of the 366k+ citation dataset.</li>
+      </ul>
     </div>
 
-    <div class="tl-row fade">
-      <div class="tl-meta">
-        <div class="tl-date">Nov 2023 – May 2025</div>
-        <div class="tl-loc">Binghamton, NY</div>
-      </div>
-      <div class="tl-body">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
+    <div class="tl-entry fade">
+      <div class="tl-header">
+        <div>
           <div class="tl-role">Student Assistant</div>
           <div class="tl-co">Binghamton University</div>
-          <ul class="tl-ul">
-            <li>Redesigned ticketing and service workflows using process mapping (as-is / to-be analysis), reducing average wait times by <span class="pill-green">↓ 45%</span> and improving resolution throughput across the department.</li>
-            <li>Gathered operational requirements from 4 internal stakeholder groups to identify bottlenecks, documented process gaps, and proposed system improvements adopted by department leadership.</li>
-            <li>Coordinated end-to-end event logistics and resource allocation for <strong>20+ campus events</strong>, managing schedules, vendor coordination, and post-event performance reporting.</li>
-            <li>Automated parking services data processes using Python scripts, eliminating manual reconciliation errors and improving data accuracy by <span class="pill-green">↓ 20%</span>.</li>
-            <li>Built and maintained operational dashboards used by supervisors to track service KPIs, attendance, and incident resolution metrics on a weekly basis.</li>
-          </ul>
+        </div>
+        <div class="tl-meta">
+          <div class="tl-date">Nov 2023 – May 2025</div>
+          <div class="tl-loc">Binghamton, NY</div>
         </div>
       </div>
+      <ul class="tl-ul">
+        <li>Redesigned ticketing and service workflows using process mapping (as-is / to-be analysis), reducing average wait times by <span class="pill-green">↓ 45%</span> and improving resolution throughput across the department.</li>
+        <li>Gathered operational requirements from 4 internal stakeholder groups to identify bottlenecks, documented process gaps, and proposed system improvements adopted by department leadership.</li>
+        <li>Coordinated end-to-end event logistics and resource allocation for <strong>20+ campus events</strong>, managing schedules, vendor coordination, and post-event performance reporting.</li>
+        <li>Automated parking services data processes using Python scripts, eliminating manual reconciliation errors and improving data accuracy by <span class="pill-green">↓ 20%</span>.</li>
+        <li>Built and maintained operational dashboards used by supervisors to track service KPIs, attendance, and incident resolution metrics on a weekly basis.</li>
+      </ul>
     </div>
 
-    <div class="tl-row fade">
-      <div class="tl-meta">
-        <div class="tl-date">Feb 2022 – Jan 2023</div>
-        <div class="tl-loc">India</div>
-      </div>
-      <div class="tl-body">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
+    <div class="tl-entry fade">
+      <div class="tl-header">
+        <div>
           <div class="tl-role">Associate Business Analyst</div>
           <div class="tl-co">TSS Consultancy Pvt Ltd · Bank of Baroda</div>
-          <ul class="tl-ul">
-            <li>Gathered and documented functional requirements from 8+ business stakeholders across finance, compliance, and operations units — translating ambiguous needs into structured BRDs and user stories consumed by development teams.</li>
-            <li>Supported AML/KYC compliance processes by analyzing transaction monitoring data and documenting regulatory workflow requirements, directly contributing to 2 successful audit reviews.</li>
-            <li>Defined, tracked, and reported on 15+ KPIs across project portfolios, enabling executive stakeholders to make data-backed decisions on resource allocation and prioritization.</li>
-            <li>Managed Agile sprint backlogs in Jira, writing acceptance criteria, facilitating grooming sessions, and coordinating UAT feedback cycles that reduced defect escape rates by <span class="pill-green">↓ 30%</span>.</li>
-            <li>Led knowledge-transfer workshops on automation tools for 12+ team members; authored user manuals, process flows, and system documentation adopted as standard references across the project.</li>
-          </ul>
+        </div>
+        <div class="tl-meta">
+          <div class="tl-date">Feb 2022 – Jan 2023</div>
+          <div class="tl-loc">India</div>
         </div>
       </div>
+      <ul class="tl-ul">
+        <li>Gathered and documented functional requirements from 8+ business stakeholders across finance, compliance, and operations units — translating ambiguous needs into structured BRDs and user stories consumed by development teams.</li>
+        <li>Supported AML/KYC compliance processes by analyzing transaction monitoring data and documenting regulatory workflow requirements, directly contributing to 2 successful audit reviews.</li>
+        <li>Defined, tracked, and reported on 15+ KPIs across project portfolios, enabling executive stakeholders to make data-backed decisions on resource allocation and prioritization.</li>
+        <li>Managed Agile sprint backlogs in Jira, writing acceptance criteria, facilitating grooming sessions, and coordinating UAT feedback cycles that reduced defect escape rates by <span class="pill-green">↓ 30%</span>.</li>
+        <li>Led knowledge-transfer workshops on automation tools for 12+ team members; authored user manuals, process flows, and system documentation adopted as standard references across the project.</li>
+      </ul>
     </div>
 
-    <div class="tl-row fade">
-      <div class="tl-meta">
-        <div class="tl-date">Feb 2020 – Dec 2021</div>
-        <div class="tl-loc">Mumbai, India</div>
-      </div>
-      <div class="tl-body">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
+    <div class="tl-entry fade">
+      <div class="tl-header">
+        <div>
           <div class="tl-role">Business Analyst</div>
           <div class="tl-co">Secure Brand and Technologies</div>
-          <ul class="tl-ul">
-            <li>Led requirements discovery for 6+ client digital transformation engagements — conducting stakeholder interviews, facilitating workshops, and producing functional specifications that reduced scope creep by maintaining a 92% requirements sign-off rate.</li>
-            <li>Analyzed client business workflows end-to-end and designed CMS-based solutions that streamlined operations, reducing manual processing steps by an average of <span class="pill-green">↓ 35%</span> across client deployments.</li>
-            <li>Integrated CRM, payments, and analytics modules aligned to client KPIs — improving customer data completeness by 28% and enabling marketing teams to act on real-time behavioral insights.</li>
-            <li>Delivered process improvement recommendations backed by data analysis, including a platform performance optimization initiative that reduced page load times by 40% and improved SEO ranking positions for 3 client properties.</li>
-            <li>Managed project lifecycle from initial requirements gathering through production deployment, serving as the primary liaison between business stakeholders and engineering teams across concurrent projects.</li>
-          </ul>
+        </div>
+        <div class="tl-meta">
+          <div class="tl-date">Feb 2020 – Dec 2021</div>
+          <div class="tl-loc">Mumbai, India</div>
         </div>
       </div>
+      <ul class="tl-ul">
+        <li>Led requirements discovery for 6+ client digital transformation engagements — conducting stakeholder interviews, facilitating workshops, and producing functional specifications that reduced scope creep by maintaining a 92% requirements sign-off rate.</li>
+        <li>Analyzed client business workflows end-to-end and designed CMS-based solutions that streamlined operations, reducing manual processing steps by an average of <span class="pill-green">↓ 35%</span> across client deployments.</li>
+        <li>Integrated CRM, payments, and analytics modules aligned to client KPIs — improving customer data completeness by 28% and enabling marketing teams to act on real-time behavioral insights.</li>
+        <li>Delivered process improvement recommendations backed by data analysis, including a platform performance optimization initiative that reduced page load times by 40% and improved SEO ranking positions for 3 client properties.</li>
+        <li>Managed project lifecycle from initial requirements gathering through production deployment, serving as the primary liaison between business stakeholders and engineering teams across concurrent projects.</li>
+      </ul>
     </div>
 
   </div>
@@ -711,12 +680,21 @@
         <div class="edu-deg">Master of Science — Information Systems</div>
         <div class="edu-sch">Binghamton University (SUNY)</div>
         <div class="edu-dt">August 2023 – May 2025 · Binghamton, New York</div>
+        <div class="edu-dt" style="margin-top:10px;line-height:1.7;color:var(--text2);font-size:.8rem;">
+          <strong style="color:var(--text3);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;">Relevant Coursework</strong><br>
+          Data Mining · Applied Machine Learning · System &amp; Web Security · Agile Methodologies · Database Management · Data Analytics · PostgreSQL
+        </div>
       </div>
       <div class="edu-card fade-s">
         <div class="edu-icon">🏛️</div>
         <div class="edu-deg">Bachelor of Engineering — Information Technology</div>
         <div class="edu-sch">Atharva College of Engineering</div>
         <div class="edu-dt">August 2015 – May 2019 · Mumbai, India</div>
+        <div class="edu-dt" style="margin-top:10px;line-height:1.7;color:var(--text2);font-size:.8rem;">
+          <strong style="color:var(--text3);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;">Activities</strong><br>
+          Cultural Secretary — organized college-wide cultural events, led cross-team coordination and student engagement initiatives.<br>
+          Vice Captain, Football Team — led team strategy and represented the college in intercollegiate competitions.
+        </div>
       </div>
     </div>
   </div>
@@ -726,13 +704,16 @@
 <section class="section" id="certifications">
   <div class="eyebrow fade">Credentials</div>
   <h2 class="sec-title fade">Certifications</h2>
-  <p class="sec-sub fade">Verified industry credentials across cloud infrastructure, data platforms, and AI.</p>
+  <p class="sec-sub fade">Industry credentials across cloud infrastructure, data platforms, project management, and AI.</p>
   <div class="certs">
+    <div class="cert-card fade"><div class="cert-ic">☁️</div><div><div class="cert-name">Oracle Data Platform 2025 Certified Foundations Associate</div><div class="cert-issuer">Oracle · Oct 2025</div></div></div>
     <div class="cert-card fade"><div class="cert-ic">☁️</div><div><div class="cert-name">Oracle Cloud Infrastructure 2025 Certified Foundations Associate</div><div class="cert-issuer">Oracle · 2025</div></div></div>
-    <div class="cert-card fade"><div class="cert-ic">🗄️</div><div><div class="cert-name">Oracle Data Platform 2025 Certified Foundations Associate</div><div class="cert-issuer">Oracle · 2025</div></div></div>
-    <div class="cert-card fade"><div class="cert-ic">🐍</div><div><div class="cert-name">Databases and SQL for Data Science with Python</div><div class="cert-issuer">IBM / Coursera</div></div></div>
+    <div class="cert-card fade"><div class="cert-ic">📋</div><div><div class="cert-name">Google Project Management: Specialization</div><div class="cert-issuer">Google · Apr 2025</div></div></div>
     <div class="cert-card fade"><div class="cert-ic">📊</div><div><div class="cert-name">Google Business Intelligence Specialization</div><div class="cert-issuer">Google / Coursera</div></div></div>
-    <div class="cert-card fade"><div class="cert-ic">🤖</div><div><div class="cert-name">Generative AI for Project Managers</div><div class="cert-issuer">PMI / Coursera</div></div></div>
+    <div class="cert-card fade"><div class="cert-ic">🤖</div><div><div class="cert-name">Generative AI for Project Managers</div><div class="cert-issuer">IBM / SkillUp EdTech</div></div></div>
+    <div class="cert-card fade"><div class="cert-ic">🤖</div><div><div class="cert-name">Generative AI for Business Intelligence (BI) Analysts Specialization</div><div class="cert-issuer">IBM / SkillUp EdTech</div></div></div>
+    <div class="cert-card fade"><div class="cert-ic">🤖</div><div><div class="cert-name">Generative AI for Customer Support Specialization</div><div class="cert-issuer">IBM / SkillUp EdTech</div></div></div>
+    <div class="cert-card fade"><div class="cert-ic">📈</div><div><div class="cert-name">Business Analysis &amp; Process Management</div><div class="cert-issuer">Coursera</div></div></div>
   </div>
 </section>
 
@@ -751,7 +732,7 @@
       <div class="sk-card fade-s">
         <div class="sk-top"><div class="sk-icon">🗄️</div><div><div class="sk-name">SQL</div><div class="sk-level">Expert</div></div></div>
         <div class="sk-bar-bg"><div class="sk-bar" style="width:0%" data-w="91%"></div></div>
-        <div class="sk-pills"><span class="sk-pill">SQLite</span><span class="sk-pill">Oracle DB</span><span class="sk-pill">PostgreSQL</span><span class="sk-pill">Window Functions</span><span class="sk-pill">CTEs</span></div>
+        <div class="sk-pills"><span class="sk-pill">SQLite</span><span class="sk-pill">PostgreSQL</span><span class="sk-pill">Oracle DB</span><span class="sk-pill">Window Functions</span><span class="sk-pill">CTEs</span></div>
       </div>
       <div class="sk-card fade-s">
         <div class="sk-top"><div class="sk-icon">📊</div><div><div class="sk-name">Power BI</div><div class="sk-level">Advanced</div></div></div>
