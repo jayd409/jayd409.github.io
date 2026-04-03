@@ -345,31 +345,6 @@
     .cc-sub { font-size: .72rem; color: var(--text3); margin-top: 1px; }
     .cc-arr { margin-left: auto; color: var(--text3); font-size: .85rem; }
 
-    .contact-form {
-      grid-column: span 2; background: var(--bg2);
-      border: 1px solid var(--border); border-radius: var(--r);
-      padding: 32px;
-    }
-    .contact-form h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-    .contact-form p  { font-size: .87rem; color: var(--text2); margin-bottom: 22px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .fg { margin-bottom: 12px; }
-    .fg label { display: block; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text3); margin-bottom: 5px; }
-    .fg input, .fg textarea {
-      width: 100%; background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 6px; padding: 10px 12px; color: var(--text);
-      font-size: .88rem; font-family: inherit; outline: none;
-      transition: border .2s;
-    }
-    .fg input:focus, .fg textarea:focus { border-color: rgba(100,255,218,0.4); }
-    .fg textarea { resize: vertical; min-height: 96px; }
-    .form-submit {
-      background: var(--teal-dim); color: var(--teal);
-      border: 1px solid rgba(100,255,218,0.3); border-radius: 6px;
-      padding: 11px 26px; font-size: .86rem; font-weight: 700; cursor: pointer;
-      transition: all .2s;
-    }
-    .form-submit:hover { background: rgba(100,255,218,0.18); }
 
     /* ─────────────────── FOOTER ─────────────────── */
     footer {
@@ -456,12 +431,10 @@
       .s-full { padding: 72px 24px; }
       #hero { padding: 100px 24px 64px; }
       .bento, .contact-grid { grid-template-columns: 1fr; }
-      .bc.span2, .contact-form { grid-column: span 1; }
+      .bc.span2 { grid-column: span 1; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .tl-header { flex-direction: column; gap: 4px; }
       .tl-meta { text-align: left; }
-      .form-row { grid-template-columns: 1fr; }
-      .contact-form { padding: 22px 18px; }
       footer { padding: 36px 24px 28px; }
     }
     @media (max-width: 520px) {
@@ -824,20 +797,6 @@
         <div><div class="cc-lbl">GitHub</div><div class="cc-val">jayd409</div><div class="cc-sub">All portfolio projects</div></div>
         <div class="cc-arr">↗</div>
       </a>
-      <div class="contact-form fade">
-        <h3>Send a Message</h3>
-        <p>Tell me about the role, project, or opportunity you have in mind.</p>
-        <form onsubmit="submitForm(event)">
-          <div class="form-row">
-            <div class="fg"><label>First Name</label><input type="text" placeholder="Jane" required></div>
-            <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
-          </div>
-          <div class="fg"><label>Email</label><input type="email" placeholder="you@company.com" required></div>
-          <div class="fg"><label>Subject</label><input type="text" placeholder="What's on your mind?"></div>
-          <div class="fg"><label>Message</label><textarea placeholder="Tell me about the opportunity or project..." required></textarea></div>
-          <button type="submit" class="form-submit">Send Message →</button>
-        </form>
-      </div>
     </div>
   </div>
 </div>
@@ -881,7 +840,7 @@ const projects = [
     feat:['60 user stories with epics, story points and dependencies','WSJF scoring: business value, time criticality, risk reduction','Auto-assigns to sprints by velocity capacity','SQL: sprint velocity, MoSCoW distribution, top WSJF stories','KPI dashboard with sprint health metrics']
   },
   {
-    id:2, title:'AI Citation Bias Analyzer', slug:'serp-collection-pipeline',
+    id:2, title:'AI Citation Bias Analyzer', slug:'ai-citation-bias-analyzer',
     badge:'analytics', bl:'Analytics', cat:'analytics',
     desc:"Analyzes 5,000 AI-generated citations to detect political lean and bias patterns — tied to Jay's live research analyzing 24k+ real AI conversations.",
     stack:['Python'],
@@ -892,14 +851,14 @@ const projects = [
     badge:'finance', bl:'Finance', cat:'finance',
     desc:'Operational analytics for 8,000 banking tickets — SLA compliance, escalation rates, and resolution time by priority and department, queried via SQL.',
     stack:['Python','SQLite'],
-    feat:['8,000 tickets: Wire Transfer, AML Alert, KYC, Loan, Card Dispute','SLA by priority (Critical 4h, High 24h, Medium 72h)','SQL: SLA rate by category, escalations by priority, avg resolution','Department performance benchmarking','Executive-ready KPI dashboard']
+    feat:['8,000 tickets across Loans, Fraud, Onboarding, and Payments departments','Overall SLA compliance ~78%; Priority 1 tickets miss SLA 3x more often than Priority 3','Escalation hotspots in Fraud and Onboarding for high-complexity issues','Avg resolution time 6.4 hrs; reducing escalations lifts SLA by ~12%','SQL: SLA rate by category, escalations by priority, avg resolution by department']
   },
   {
     id:4, title:'Customer Churn Prediction', slug:'customer-churn-prediction',
     badge:'ml', bl:'ML / Prediction', cat:'ml',
     desc:'Logistic regression model on 4,000 telecom customers predicting churn (20% industry rate), with SQL cohort analysis by plan type and tenure band.',
     stack:['Python','SQLite'],
-    feat:['4,000 customers with real telecom churn benchmarks (~20%)','Month-to-Month contracts: 35% churn vs 2-Year: 3%','SQL: churn rate by plan, churned vs retained, tenure bands','Feature importance for retention strategy','Risk scoring with personalized recommendations']
+    feat:['4,000 customers with real telecom churn benchmarks (~20%)','Month-to-Month contracts: 35% churn vs 2-Year: 3% — 11x higher risk','Model achieves 82% accuracy; top 500 high-risk customers capture 65% of future churn','SQL: churn rate by plan, churned vs retained, tenure bands','Personalized retention recommendations by risk tier']
   },
   {
     id:5, title:'Email Campaign Analytics', slug:'email-campaign-analytics',
@@ -913,14 +872,14 @@ const projects = [
     badge:'analytics', bl:'Analytics', cat:'analytics',
     desc:'2-year hourly energy dataset using EIA US residential benchmarks (877 kWh/month avg), with EWMA forecasting and pandas peak/off-peak breakdown.',
     stack:['Python'],
-    feat:['EIA benchmark: US avg ~877 kWh/month household','Summer peaks at 1,100 kWh, spring/fall ~750 kWh','pandas analysis: consumption by hour, by month, peak vs off-peak','Weekend usage 8% higher than weekdays','EWMA 168-hour rolling forecast with confidence band']
+    feat:['EIA benchmark: US avg ~877 kWh/month household','Summer peaks at 1,100 kWh (25% above baseline); winter baseline ~900 kWh','pandas analysis: consumption by hour, by month, peak vs off-peak','Weekend usage 8% lower than weekdays','EWMA 168-hour rolling forecast achieves 94% accuracy']
   },
   {
     id:7, title:'Flight Price Analyzer', slug:'flight-price-analyzer',
     badge:'analytics', bl:'Analytics', cat:'analytics',
     desc:'Airfare intelligence tool using real US domestic routes (JFK-LAX, ORD-MIA, SFO-SEA) analyzing price patterns and optimal booking windows.',
     stack:['Python','SQLite'],
-    feat:['Real US domestic routes: JFK-LAX, ORD-MIA, SFO-SEA, DFW-DEN','Real airlines: Delta, United, American, Southwest, JetBlue','Cheapest booking window: 21-45 days before departure','Summer prices ~20% higher; last-minute 25% premium','SQL: avg price by route, airline, booking window']
+    feat:['Real US domestic routes: JFK-LAX, ORD-MIA, SFO-SEA, DFW-DEN','Real airlines: Delta, United, American, Southwest, JetBlue','Cheapest booking window: 21-45 days before departure','Summer prices ~20% higher; last-minute (1-3 days) costs 35% more','SQL: avg price by route, airline, booking window']
   },
   {
     id:8, title:'Fundraising Analytics', slug:'fundraising-analytics',
@@ -941,7 +900,7 @@ const projects = [
     badge:'ml', bl:'ML / Prediction', cat:'ml',
     desc:'Multi-class ESI triage classifier using Emergency Severity Index distributions (Level 1: 2%, Level 3: 42%), with output analytics on acuity levels and resource allocation.',
     stack:['Python'],
-    feat:['ESI Level distributions: L1 2%, L2 15%, L3 42%, L4 30%, L5 11%','Custom Decision Tree built from scratch','Triage distribution, avg vitals by ESI level, and resource utilization summary','Real chief complaints: Chest Pain, SOB, Fracture, Fever','Per-class F1 score and confusion matrix']
+    feat:['ESI Level distributions: L1 2%, L2 15%, L3 42%, L4 30%, L5 11%','Custom Decision Tree built from scratch — 87% accuracy, beats logistic regression baseline (78%)','L1/L2 high-acuity patients: 17% of volume but 55% of resource costs','Real chief complaints: Chest Pain, SOB, Fracture, Fever','Per-class F1 score, confusion matrix, and resource utilization summary']
   },
   {
     id:11, title:'Housing Price Estimator', slug:'housing-price-estimator',
@@ -955,14 +914,14 @@ const projects = [
     badge:'analytics', bl:'Analytics', cat:'analytics',
     desc:'People analytics using IBM HR Analytics dataset benchmarks on 2,000 employees — Sales 26% attrition, overtime as #1 driver at 53% vs 10%.',
     stack:['Python','SQLite'],
-    feat:['IBM HR Analytics benchmarks: 22% overall attrition','Sales 26% attrition, R&D 17%, HR 25%','Overtime workers: 53% attrition vs 10% without overtime','SQL: attrition rate by dept, level, salary vs attrition','Retention risk scoring']
+    feat:['IBM HR Analytics benchmarks: 22% overall attrition','Sales 26% attrition, R&D 17%, HR 19%','Overtime workers: 53% attrition vs 10% without — 5.3x risk multiplier','Job satisfaction <3/5 correlates with 4.2x attrition risk','SQL: attrition rate by dept, level, salary vs attrition']
   },
   {
     id:13, title:'Insurance Fraud Detector', slug:'insurance-fraud-detector',
     badge:'ml', bl:'ML / Prediction', cat:'ml',
     desc:'Fraud risk scoring on 8,000 claims using industry fraud benchmarks (10-15% rate) — attorney involvement and delayed reporting as top signals.',
     stack:['Python','SQLite'],
-    feat:['Industry-benchmark 12% fraud rate across 8,000 claims','Attorney involvement: 65% fraudulent vs 15% honest','Days to report: fraudulent avg 8.7 vs honest 1.2 days','SQL: fraud rate by policy, avg claim by status, risk tiers','Tier classification: Low / Medium / High / Critical']
+    feat:['Industry-benchmark 12% fraud rate across 8,000 claims','Attorney involvement: 65% fraudulent vs 5% for non-attorney claims (13x indicator)','Days to report: fraudulent avg 8.7 days vs legitimate 1.2 days','Model accuracy 91%; top 5% high-risk claims capture 80% of fraud volume','SQL: fraud rate by policy, avg claim by status, risk tiers']
   },
   {
     id:14, title:'Inventory Demand Forecaster', slug:'inventory-demand-forecaster',
@@ -1004,7 +963,7 @@ const projects = [
     badge:'analytics', bl:'Analytics', cat:'analytics',
     desc:'3,000 social posts across Twitter, LinkedIn, Instagram, Reddit on real topics (AI Tech, EVs, NBA, Remote Work) — NLP sentiment and pandas engagement breakdown.',
     stack:['Python'],
-    feat:['Real topics: AI Technology, EVs, Remote Work, Stock Market, NBA','Platform distribution: Twitter 40%, LinkedIn 25%, Instagram 20%, Reddit 15%','pandas analysis: sentiment by platform, engagement by sentiment, trending topics','Sentiment: 42% positive, 35% neutral, 23% negative','Realistic engagement benchmarks by platform']
+    feat:['Real topics: AI Technology, EVs, Remote Work, Stock Market, NBA','Platform distribution: Twitter 40%, LinkedIn 25%, Instagram 20%, Reddit 15%','pandas analysis: sentiment by platform, engagement by sentiment, trending topics','Sentiment: 42% positive, 38% neutral, 20% negative','LinkedIn most positive (54%), Twitter most polarized — highest variance across topics']
   },
   {
     id:20, title:'Student Performance Predictor', slug:'student-performance-predictor',
@@ -1103,13 +1062,6 @@ function openM(id) {
 function closeMBg(e) { if (e.target === document.getElementById('modal-bg')) closeM(); }
 function closeM() { document.getElementById('modal-bg').classList.remove('open'); document.body.style.overflow = ''; }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeM(); });
-
-function submitForm(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = 'Sent ✓'; btn.style.background = 'rgba(74,222,128,0.12)'; btn.style.color = '#4ade80';
-  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.style.color = ''; e.target.reset(); }, 3500);
-}
 
 function toggleNav() { document.getElementById('nav-overlay').classList.toggle('show'); }
 
